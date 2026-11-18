@@ -1,0 +1,1 @@
+{"name":"ilana-site-build","private":true,"description":"Self-hosted fonts for the production build","dependencies":{"@fontsource/ibm-plex-sans":"^5.2.0","@fontsource/ibm-plex-sans-hebrew":"^5.2.0","@fontsource/noto-serif-display":"^5.2.0","@fontsource/noto-serif-hebrew":"^5.2.0"}}
