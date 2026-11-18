@@ -54,4 +54,4 @@ User-agent: *
 Allow: /
 Disallow: /assets/fonts/
 
-Sitemap: https://ilana-site.netlify.app/sitemap.xml
+Sitemap: https://ilanaungerlaw.com/sitemap.xml
