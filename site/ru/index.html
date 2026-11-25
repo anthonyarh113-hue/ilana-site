@@ -1035,7 +1035,7 @@ html[data-theme=day] .vign{background:radial-gradient(130% 100% at 70% 15%,trans
   background:var(--card);border:1px solid var(--line2);box-shadow:var(--shadow),inset 0 1px 0 var(--card-hi);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);overflow:hidden;transition:box-shadow .8s,border-color .8s,transform 1s var(--ease)}
 html[dir=rtl] .pvc{transform:translateY(-50%) rotate(-1.2deg)}
 .pvc::before{content:"";position:absolute;inset:0;background-image:url("/assets/img/tex_paper.webp");background-size:500px;mix-blend-mode:overlay;opacity:.35;pointer-events:none}
-.pvc.fin{border-color:rgba(var(--acc-rgb),.55);box-shadow:var(--shadow),0 0 60px -10px rgba(var(--acc-rgb),.5),inset 0 1px 0 var(--card-hi)}
+.pvc.pvfin{border-color:rgba(var(--acc-rgb),.55);box-shadow:var(--shadow),0 0 60px -10px rgba(var(--acc-rgb),.5),inset 0 1px 0 var(--card-hi)}
 .pvc-h{position:relative;display:flex;align-items:center;gap:14px;padding-bottom:16px;border-bottom:1px dashed var(--line2)}
 .pvc-seal{flex:none;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-size:14px;letter-spacing:.06em;color:var(--acc);border:1px solid rgba(var(--acc-rgb),.5);box-shadow:inset 0 0 0 4px rgba(var(--acc-rgb),.08)}
 .pvc-h b{display:block;font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
@@ -1408,19 +1408,81 @@ html[lang=he] .kf-h b{letter-spacing:0;font-size:18px}
 footer{color:var(--mut);font-size:14.5px;padding:50px 0 40px;position:relative}
 footer::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,.28));pointer-events:none}
 html[data-theme=day] footer::before{background:linear-gradient(180deg,transparent,rgba(255,255,255,.35))}
-.fin{position:relative;grid-template-columns:1.3fr 1fr 1fr;gap:34px 40px;border-top:1px solid rgba(var(--acc-rgb),.3)}
-.fin h6{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);margin-bottom:12px}
-html[lang=he] .fin h6{letter-spacing:.04em;font-size:14px}
-html[data-theme=day] .fin h6{color:#6d4a26}
+footer .fin{position:relative;grid-template-columns:1.3fr 1fr 1fr;gap:34px 40px;border-top:1px solid rgba(var(--acc-rgb),.3)}
+footer .fin h6{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);margin-bottom:12px}
+html[lang=he] footer .fin h6{letter-spacing:.04em;font-size:14px}
+html[data-theme=day] footer .fin h6{color:#6d4a26}
 .fdisc{color:var(--mut);max-width:420px;line-height:1.6}
-.fin .lic{font-family:var(--sans);font-size:13px;color:var(--mut);margin-top:10px}
+footer .fin .lic{font-family:var(--sans);font-size:13px;color:var(--mut);margin-top:10px}
 .flinks,.fcontact{display:flex;flex-direction:column;align-items:flex-start;gap:9px;justify-content:flex-start}
 .flinks button,.fcontact a{font-size:14.5px;color:var(--ink);opacity:.85;transition:color .3s,opacity .3s;text-align:start}
 .flinks button:hover,.fcontact a:hover{color:var(--acc);opacity:1}
 .fbot{color:var(--mut);font-size:13px;border-top:1px solid var(--line)}
-@media (max-width:900px){.fin{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:900px){footer .fin{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:980px){.pvc,html[dir=rtl] .pvc{width:100%!important;max-width:440px;transform:none!important;position:relative;inset:auto;top:auto;margin-top:14px}}
 @media (max-width:640px){.hdr .logo b{font-size:15.5px;white-space:nowrap;letter-spacing:.04em}.hdr .logo small{font-size:8.5px;letter-spacing:.22em;white-space:nowrap}html[lang=he] .hdr .logo b{font-size:18px}html[lang=he] .hdr .logo small{font-size:11px}.hdr .in{height:64px;gap:10px}}
+
+/* ===================== v13 fixes ===================== */
+/* about: clean, straight photo card */
+.a-media::before{content:none}
+.a-photo{border-radius:30px;transform:none!important}
+.a-photo::before{inset:10px;border-radius:22px;border:1px solid rgba(var(--acc-rgb),.5)}
+.a-media.rv,.a-media.rv.in{transform:none}
+.a-badge,html[dir=rtl] .a-badge{bottom:26px;left:50%;right:auto;inset-inline-start:auto;transform:translateX(-50%)}
+
+/* services light theme: neutral glass chips */
+html[data-theme=day] .smst span{background:linear-gradient(100deg,rgba(255,255,255,.62),rgba(255,255,255,.32));border-color:rgba(80,70,40,.18);color:#2a2716;box-shadow:0 8px 20px -14px rgba(60,55,30,.4)}
+html[data-theme=day] .smst span:last-child{background:linear-gradient(100deg,#3c3a2a,#2B2B11 55%,#5B3418);border-color:transparent;color:#f3eee2;box-shadow:0 12px 26px -14px rgba(43,43,17,.6)}
+html[data-theme=day] .smst i{background:linear-gradient(rgba(91,52,24,.6),transparent)}
+
+/* FAQ: no box around, both columns same top and height */
+.faq .faqwrap.scene{background:none!important;border:0;box-shadow:none;padding:0;overflow:visible;border-radius:0}
+.faq .faqwrap.scene::before,.faq .faqwrap.scene::after{content:none}
+.faqgrid{align-items:start}
+.faqgrid .fc{height:auto;min-height:100%}
+.faqq{display:flex;flex-direction:column}
+@media (min-width:981px){.faqgrid{align-items:stretch}.faqgrid .fc{min-height:0;height:auto}}
+
+/* contact: heading on top, cards and form side by side, same height */
+.khead{position:relative;padding-top:clamp(60px,9vw,130px);margin-bottom:clamp(26px,3vw,40px)}
+.khead .h2{margin-top:16px}.khead .lead{margin-top:12px;max-width:620px}
+.kgrid{padding-top:0;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch}
+.kl{display:flex}
+.klinks{margin-top:0;flex:1;display:grid;grid-template-rows:repeat(4,1fr);gap:12px}
+.klinks .kl-card{height:100%}
+.kform{display:flex;flex-direction:column}
+.kform .submit{margin-top:auto}
+.kform .consent.mkt{margin-bottom:16px}
+@media (max-width:980px){.kgrid{grid-template-columns:minmax(0,1fr)}.klinks{grid-template-rows:none}}
+
+/* section word visible on dark too (contact) */
+.kword{z-index:0;background:linear-gradient(180deg,rgba(236,226,204,.24) 0%,rgba(236,226,204,.05) 88%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:1px rgba(236,226,204,.1);font-family:"Noto Serif Display","Noto Serif Hebrew",serif}
+html[lang=he] .kword{font-family:"Noto Serif Hebrew",serif;font-weight:700}
+html[data-theme=day] .kword{background:linear-gradient(180deg,rgba(38,42,24,.2) 0%,rgba(38,42,24,.03) 88%);-webkit-background-clip:text;background-clip:text;-webkit-text-stroke:1px rgba(38,42,24,.08)}
+
+/* chat launcher: champagne metal, like the main buttons, with pulse rings */
+.cb-launch{width:64px;height:64px;border-radius:50%;overflow:visible;isolation:isolate;animation:cbBob 4s ease-in-out infinite;
+  background:radial-gradient(120% 120% at 30% 20%,#fff6e4 0%,#e9d3a8 28%,#c49a62 58%,#7a5a33 100%);
+  box-shadow:0 18px 40px -12px rgba(0,0,0,.55),0 0 0 1px rgba(255,240,210,.55),inset 0 2px 1px rgba(255,255,255,.7),inset 0 -10px 18px rgba(90,58,24,.45)}
+.cb-launch::before{content:"";position:absolute;inset:0;border-radius:50%;z-index:1;padding:0;border:0;-webkit-mask:none;mask:none;animation:none;
+  background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.55) 45%,transparent 60%);background-size:250% 100%;animation:cbShine 4.5s ease-in-out infinite;mix-blend-mode:soft-light}
+.cb-launch::after{content:none}
+@keyframes cbShine{0%,55%{background-position:120% 0}100%{background-position:-120% 0}}
+.cb-launch .cbr{position:absolute;inset:0;border-radius:50%;z-index:-1;border:1.5px solid rgba(var(--acc-rgb),.8);animation:cbRing 2.6s cubic-bezier(.2,.6,.3,1) infinite;pointer-events:none}
+.cb-launch .cbr.r2{animation-delay:1.3s}
+@keyframes cbRing{0%{transform:scale(1);opacity:.85}100%{transform:scale(1.6);opacity:0}}
+.cb-launch .cbi{position:relative;z-index:2;display:grid;place-items:center}
+.cb-launch .cbi svg{width:30px;height:30px;fill:none;filter:drop-shadow(0 1px 0 rgba(255,255,255,.5))}
+.cb-launch .cbi svg .b1{fill:#2a1e0f;stroke:#2a1e0f;stroke-width:1}
+.cb-launch .cbi svg .b2{stroke:#2a1e0f;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.cb-launch .tdots{display:none}
+.cb-launch .dotn{z-index:3;background:linear-gradient(160deg,#d9735a,#a3402a);color:#fff;border:2px solid #f3e6cb}
+.cb-launch:hover{transform:scale(1.07);box-shadow:0 18px 40px -12px rgba(0,0,0,.55),0 0 0 1px rgba(255,240,210,.8),0 0 40px -4px rgba(var(--acc-rgb),.85),inset 0 2px 1px rgba(255,255,255,.7)}
+html[data-theme=day] .cb-launch{background:radial-gradient(120% 120% at 30% 20%,#7d7a63 0%,#3c3a2a 40%,#2B2B11 70%,#5B3418 100%);box-shadow:0 18px 40px -14px rgba(43,43,17,.6),0 0 0 1px rgba(var(--acc-rgb),.45),inset 0 2px 1px rgba(255,255,255,.25)}
+html[data-theme=day] .cb-launch .cbi svg .b1{fill:#f3e6cb;stroke:#f3e6cb}
+html[data-theme=day] .cb-launch .cbi svg .b2{stroke:#f3e6cb}
+.cb-launch.open-state .cbr{display:none}
+.a-badge,html[dir=rtl] .a-badge{left:0!important;right:0!important;inset-inline:0!important;margin-inline:auto;width:max-content;max-width:calc(100% - 40px);transform:none!important;bottom:22px}
 
 </style>
 </head>
@@ -1628,18 +1690,16 @@ html[data-theme=day] .fin h6{color:#6d4a26}
   <section class="sec contact" id="contact">
     <div class="kword" data-i18n="kWord" aria-hidden="true">Контакт</div>
     <div class="kdeco" aria-hidden="true"><i class="dl"></i><i class="dc c1"></i><i class="dc c2"></i></div>
-    <div class="wrap kgrid">
-      <div class="kl">
-        <span class="kchip rv"><i></i><span data-i18n="kChip">Контакт</span></span>
+    <div class="wrap khead"><span class="kchip rv"><i></i><span data-i18n="kChip">Контакт</span></span>
         <h2 class="h2 rv" data-i18n="kH">Давайте <em>поговорим</em></h2>
-        <p class="lead rv" data-i18n="kSub">Оставьте заявку — я свяжусь с вами в ближайший рабочий день и подскажу первые шаги.</p>
-        <div class="klinks">
+        <p class="lead rv" data-i18n="kSub">Оставьте заявку — я свяжусь с вами в ближайший рабочий день и подскажу первые шаги.</p></div>
+    <div class="wrap kgrid">
+      <div class="kl"><div class="klinks">
           <a class="kl-card rv" href="https://wa.me/972528445721" target="_blank" rel="noopener" data-wa data-track="contact_whatsapp"><span class="ki"><svg><use href="#i-wa"/></svg></span><span><b>WhatsApp</b><small class="ltr">+972 52 844 5721</small></span><i class="ka">↗</i></a>
           <a class="kl-card rv" href="tel:+972528445721" data-track="contact_phone"><span class="ki"><svg><use href="#i-ph"/></svg></span><span><b data-i18n="kCall">Позвонить</b><small class="ltr">052-8445721</small></span><i class="ka">↗</i></a>
           <a class="kl-card rv" href="https://instagram.com/ilana.unger.law" target="_blank" rel="noopener"><span class="ki"><svg><use href="#i-ig"/></svg></span><span><b>Instagram</b><small class="ltr">@ilana.unger.law</small></span><i class="ka">↗</i></a>
           <a class="kl-card rv" href="mailto:ilana.unger.law@gmail.com"><span class="ki"><svg><use href="#i-ml"/></svg></span><span><b>Email</b><small class="ltr">ilana.unger.law@gmail.com</small></span><i class="ka">↗</i></a>
-        </div>
-      </div>
+        </div></div>
       <form class="kform rv" id="leadForm" name="lead" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
         <input type="hidden" name="form-name" value="lead"><input type="hidden" name="lang" value=""><input type="hidden" name="source" value="form"><input type="hidden" name="page" value=""><input type="hidden" name="topic_text" value=""><input type="hidden" name="consent_service" value=""><input type="hidden" name="consent_marketing" value=""><input type="hidden" name="consent_ts" value=""><input type="hidden" name="consent_text_ver" value=""><input type="hidden" name="utm_source" value=""><input type="hidden" name="utm_medium" value=""><input type="hidden" name="utm_campaign" value=""><input type="hidden" name="utm_term" value=""><input type="hidden" name="utm_content" value="">
         <p hidden><label>Don't fill: <input name="bot-field"></label></p>
@@ -1692,10 +1752,10 @@ html[data-theme=day] .fin h6{color:#6d4a26}
   <button data-a="t1" data-i18n="aBig">Крупнее текст</button><button data-a="t-1" data-i18n="aSmall">Мельче текст</button><button data-a="contrast" data-i18n="aContrast">Высокий контраст</button><button data-a="links" data-i18n="aLinks">Выделить ссылки</button><button data-a="motion" data-i18n="aMotion">Остановить анимацию</button><button data-a="font" data-i18n="aFont">Простой шрифт</button><button data-a="reset" data-i18n="aReset" style="grid-column:1/-1">Сбросить</button>
 </div><button class="st" data-legal="accessibility" data-i18n="aStatement">Заявление о доступности</button></div>
 <!-- chatbot -->
-<div class="cb-tip" id="cbTip"><img class="av" src="/assets/img/face.webp" alt="" width="36" height="36"><span data-i18n="cbTip">Есть вопрос? Помогу за минуту</span><button id="cbTipX" aria-label="close">×</button></div>
-<button class="cb-launch" id="cbL" aria-label="Chat"><span class="cbi"><svg viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/></svg><span class="tdots"><i></i><i></i><i></i></span></span><i class="dotn">1</i></button>
+<div class="cb-tip" id="cbTip"><span class="mono" aria-hidden="true">IU</span><span data-i18n="cbTip">Есть вопрос? Помогу за минуту</span><button id="cbTipX" aria-label="close">×</button></div>
+<button class="cb-launch" id="cbL" aria-label="Chat"><span class="cbr" aria-hidden="true"></span><span class="cbr r2" aria-hidden="true"></span><span class="cbi"><svg viewBox="0 0 32 32" aria-hidden="true"><path class="b1" d="M6.5 8.5h14a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3h-8l-4.6 3.6c-.4.3-.9 0-.9-.5v-3.1H6.5a3 3 0 0 1-3-3v-7a3 3 0 0 1 3-3Z"/><path class="b2" d="M23.5 13h2a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3h-.6v2.4c0 .4-.5.7-.8.4L21 25h-5.5a3 3 0 0 1-2.4-1.2"/></svg></span><i class="dotn">1</i></button>
 <div class="cb" id="cb" role="dialog" aria-label="Chat">
-  <div class="cb-h"><img class="av" src="/assets/img/face.webp" alt="" width="44" height="44"><div><b data-i18n="cbN">Помощник Иланы</b><small data-i18n="cbS">Отвечаем быстро</small></div><button class="x" id="cbX" aria-label="close"></button></div>
+  <div class="cb-h"><span class="mono" aria-hidden="true">IU</span><div><b data-i18n="cbN">Помощник Иланы</b><small data-i18n="cbS">Отвечаем быстро</small></div><button class="x" id="cbX" aria-label="close"></button></div>
   <div class="cb-b" id="cbB"></div>
   <p class="cb-disc" data-i18n="cbDisc">Только общие ответы, не юридическая консультация.</p>
   <form class="cb-f" id="cbF"><input id="cbI" autocomplete="off"><button type="submit" aria-label="send"><svg viewBox="0 0 24 24"><path d="M3 20.5 21 12 3 3.5v6.6L15 12 3 13.9z"/></svg></button></form>
@@ -2229,7 +2289,7 @@ function onFrame(){
     el.style.filter=`blur(${((1-inn)*6+out*8).toFixed(2)}px)`;
     el.style.clipPath=`inset(${(out*10).toFixed(1)}% 0 ${((1-inn)*100).toFixed(1)}% 0)`;
     const pb=$$('#pvProg b')[i];if(pb)pb.style.transform=`scaleX(${seg(t,0,.8).toFixed(3)})`});
-  const pst=fin>.5?4:act;if(pst!==PVA){PVA=pst;$$('#pvc .pvs').forEach((s,i)=>s.classList.toggle('on',i===pst));$('#pvc')&&$('#pvc').classList.toggle('fin',pst===4)}
+  const pst=fin>.5?4:act;if(pst!==PVA){PVA=pst;$$('#pvc .pvs').forEach((s,i)=>s.classList.toggle('on',i===pst));$('#pvc')&&$('#pvc').classList.toggle('pvfin',pst===4)}
   if(pst===3){const n=performance.now();if(n-PVT>90){PVT=n;PVD++;const d=$('#pvcDays');if(d)d.textContent=PVD.toLocaleString('ru-RU')}}
   $$('#pvNum span').forEach((s,i)=>s.classList.toggle('on',i===act&&fin<.5));
   const pf=$('#pvFinal');pf.style.opacity=fin;pf.style.transform=`translate3d(0,${((1-fin)*50).toFixed(1)}px,0)`;pf.style.filter=`blur(${((1-fin)*6).toFixed(2)}px)`;pf.style.pointerEvents=fin>.5?'auto':'none';

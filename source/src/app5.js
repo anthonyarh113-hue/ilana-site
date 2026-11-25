@@ -169,7 +169,7 @@ function onFrame(){
     el.style.filter=`blur(${((1-inn)*6+out*8).toFixed(2)}px)`;
     el.style.clipPath=`inset(${(out*10).toFixed(1)}% 0 ${((1-inn)*100).toFixed(1)}% 0)`;
     const pb=$$('#pvProg b')[i];if(pb)pb.style.transform=`scaleX(${seg(t,0,.8).toFixed(3)})`});
-  const pst=fin>.5?4:act;if(pst!==PVA){PVA=pst;$$('#pvc .pvs').forEach((s,i)=>s.classList.toggle('on',i===pst));$('#pvc')&&$('#pvc').classList.toggle('fin',pst===4)}
+  const pst=fin>.5?4:act;if(pst!==PVA){PVA=pst;$$('#pvc .pvs').forEach((s,i)=>s.classList.toggle('on',i===pst));$('#pvc')&&$('#pvc').classList.toggle('pvfin',pst===4)}
   if(pst===3){const n=performance.now();if(n-PVT>90){PVT=n;PVD++;const d=$('#pvcDays');if(d)d.textContent=PVD.toLocaleString('ru-RU')}}
   $$('#pvNum span').forEach((s,i)=>s.classList.toggle('on',i===act&&fin<.5));
   const pf=$('#pvFinal');pf.style.opacity=fin;pf.style.transform=`translate3d(0,${((1-fin)*50).toFixed(1)}px,0)`;pf.style.filter=`blur(${((1-fin)*6).toFixed(2)}px)`;pf.style.pointerEvents=fin>.5?'auto':'none';
