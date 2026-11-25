@@ -38,6 +38,13 @@
   [headers.values]
     Content-Type = "text/plain; charset=utf-8"
 
+# the free netlify.app address always forwards to the real domain
+[[redirects]]
+  from = "https://ilanaungerlaw.netlify.app/*"
+  to = "https://ilanaungerlaw.com/:splat"
+  status = 301
+  force = true
+
 # old preview links like /#ru keep working (handled in JS); clean aliases:
 [[redirects]]
   from = "/he/*"
