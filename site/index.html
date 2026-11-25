@@ -1267,25 +1267,6 @@ html[lang=he] .scroll-hint{letter-spacing:.08em;font-size:13.5px}
 .scroll-hint:hover{color:var(--ink)}
 .film{padding-top:clamp(30px,4vw,60px)}
 
-/* --- film: the video lives in a phone --- */
-.fgrid{grid-template-columns:1.1fr .9fr;align-items:center}
-.fframe{justify-self:center;width:min(330px,78vw);aspect-ratio:9/18.6;border-radius:52px;padding:0;overflow:visible;cursor:pointer;
-  background:linear-gradient(145deg,#5d5a52 0%,#1f1e1a 22%,#0d0d0b 50%,#26241f 78%,#77705f 100%);
-  border:0;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.18),inset 0 0 0 4px #0b0b0a,0 50px 90px -40px rgba(0,0,0,.75),0 0 90px -30px rgba(var(--acc-rgb),.45),calc(var(--ry-n,0) * -26px) 30px 60px -30px rgba(0,0,0,.55)}
-.fframe .fbg{display:none}
-.fframe .fmain{inset:11px;width:calc(100% - 22px);height:calc(100% - 22px);max-width:none;border-radius:42px;object-fit:cover;background:#000;box-shadow:none}
-.fframe::after{inset:11px;border-radius:42px}
-.fframe .fglare{inset:11px;border-radius:42px;overflow:hidden}
-.fframe .island{position:absolute;z-index:4;top:22px;left:50%;transform:translateX(-50%);width:92px;height:26px;border-radius:20px;background:#050505;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
-.fframe .island::after{content:"";position:absolute;right:14px;top:8px;width:10px;height:10px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#2b3a55,#05070c 70%)}
-.fframe::before{content:"";position:absolute;top:120px;inset-inline-end:-3px;width:3px;height:64px;border-radius:2px;background:linear-gradient(90deg,#3a3832,#8a8373);box-shadow:0 84px 0 #6f6959}
-html[dir=ltr] .fframe::before{inset-inline-end:auto;right:-3px}
-.fframe .ffull{top:58px;inset-inline-end:24px}
-.fframe .fctl{inset-inline:26px;bottom:30px}
-.fframe .fbig{width:78px;height:78px;margin:-39px 0 0 -39px}
-.fframe.rv.in{border-radius:52px}
-@media (max-width:980px){.fgrid{grid-template-columns:minmax(0,1fr)}.fframe{width:min(300px,76vw);margin-top:10px}}
-
 /* --- eyebrows readable everywhere --- */
 .eyebrow{font-size:13px;font-weight:600;letter-spacing:.2em;color:var(--acc)}
 html[lang=he] .eyebrow{font-size:16px;font-weight:600;letter-spacing:.03em}
@@ -1484,6 +1465,40 @@ html[data-theme=day] .cb-launch .cbi svg .b2{stroke:#f3e6cb}
 .cb-launch.open-state .cbr{display:none}
 .a-badge,html[dir=rtl] .a-badge{left:0!important;right:0!important;inset-inline:0!important;margin-inline:auto;width:max-content;max-width:calc(100% - 40px);transform:none!important;bottom:22px}
 
+/* ===================== v14 ===================== */
+/* form header WhatsApp icon is a real link and glows */
+.kf-wa{transition:box-shadow .4s,border-color .4s,background .4s,transform .3s}
+.kf-wa:hover,.kf-wa:focus-visible{border-color:rgba(var(--acc-rgb),.8);background:rgba(var(--acc-rgb),.16);box-shadow:0 0 26px -2px rgba(var(--acc-rgb),.7);transform:scale(1.06)}
+.kf-wa svg{transition:fill .3s}.kf-wa:hover svg{fill:var(--acc)}
+
+/* film: classic frame back, word clears the video */
+.film{padding-top:clamp(120px,14vw,230px)}
+
+/* section words: no outline (it bent the letters), light up on arrival */
+.sword,.kword{-webkit-text-stroke:0!important;opacity:.55;transition:opacity 1.2s var(--ease),filter 1.2s var(--ease);
+  background:linear-gradient(100deg,rgba(236,226,204,.26) 0%,rgba(236,226,204,.26) 38%,rgba(255,236,200,.75) 50%,rgba(236,226,204,.26) 62%,rgba(236,226,204,.26) 100%),linear-gradient(180deg,rgba(236,226,204,.3),rgba(236,226,204,.05) 90%);
+  background-size:300% 100%,100% 100%;background-position:120% 0,0 0;-webkit-background-clip:text;background-clip:text;color:transparent}
+html[data-theme=day] .sword,html[data-theme=day] .kword{background:linear-gradient(100deg,rgba(38,42,24,.2) 0%,rgba(38,42,24,.2) 38%,rgba(122,82,48,.55) 50%,rgba(38,42,24,.2) 62%,rgba(38,42,24,.2) 100%),linear-gradient(180deg,rgba(38,42,24,.22),rgba(38,42,24,.03) 90%);background-size:300% 100%,100% 100%;background-position:120% 0,0 0;-webkit-background-clip:text;background-clip:text}
+.lit .sword,.lit .kword{opacity:1;filter:drop-shadow(0 0 24px rgba(var(--acc-rgb),.28));animation:swordSheen 2.4s .1s var(--ease) both}
+@keyframes swordSheen{from{background-position:120% 0,0 0}to{background-position:-20% 0,0 0}}
+html.a-motion .lit .sword,html.a-motion .lit .kword{animation:none}
+
+/* about: portrait melts into the page, caption under it */
+.a-photo{border-radius:0;background:none;box-shadow:none;overflow:visible;aspect-ratio:1/1.12;
+  -webkit-mask-image:radial-gradient(ellipse 62% 68% at 50% 40%,#000 58%,transparent 100%);mask-image:radial-gradient(ellipse 62% 68% at 50% 40%,#000 58%,transparent 100%)}
+.a-photo::before,.a-photo::after{content:none}
+.a-media{isolation:isolate}
+.a-media::after{content:"";position:absolute;z-index:-1;inset:6% 8% 14%;border-radius:50%;background:radial-gradient(closest-side,rgba(var(--acc-rgb),.35),rgba(var(--acc-rgb),.08) 60%,transparent);filter:blur(30px)}
+html[data-theme=day] .a-media::after{background:radial-gradient(closest-side,rgba(255,248,230,.85),rgba(255,248,230,.2) 60%,transparent)}
+.a-badge,html[dir=rtl] .a-badge{position:relative;bottom:auto!important;margin:-40px auto 0;display:flex;flex-direction:column;align-items:center;gap:6px;padding:0;background:none!important;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;color:var(--ink)}
+.a-badge::before{content:"";width:56px;height:1px;background:linear-gradient(90deg,transparent,var(--acc),transparent);margin-bottom:8px}
+.a-badge b{font-size:26px;color:var(--ink);letter-spacing:.04em}
+.a-badge small{display:block;color:var(--acc);font-size:12px;letter-spacing:.24em;text-transform:uppercase}
+html[lang=he] .a-badge small{letter-spacing:.04em;font-size:14px}
+.a-photo{-webkit-mask-image:radial-gradient(ellipse 56% 58% at 50% 44%,#000 46%,rgba(0,0,0,.6) 70%,transparent 96%);mask-image:radial-gradient(ellipse 56% 58% at 50% 44%,#000 46%,rgba(0,0,0,.6) 70%,transparent 96%)}
+.a-badge,html[dir=rtl] .a-badge{margin-top:-56px}
+.a-photo{-webkit-mask-image:radial-gradient(closest-side ellipse at 50% 50%,#000 62%,rgba(0,0,0,.55) 82%,transparent 100%);mask-image:radial-gradient(closest-side ellipse at 50% 50%,#000 62%,rgba(0,0,0,.55) 82%,transparent 100%)}
+
 </style>
 </head>
 <body>
@@ -1558,7 +1573,7 @@ html[data-theme=day] .cb-launch .cbi svg .b2{stroke:#f3e6cb}
         <p class="lead rv" style="margin:18px 0 34px" data-i18n="fmP">דקה אחת על הדרך למעמד — ממה מתחילים ומה חשוב לדעת לפני משרד הפנים.</p>
         <div class="rv"><a href="#contact" class="btn btn-p"><span data-i18n="aCta">לקביעת ייעוץ</span></a></div>
       </div>
-      <div class="fframe rv" id="fframe"><i class="island" aria-hidden="true"></i><i class="fglare" aria-hidden="true"></i>
+      <div class="fframe rv" id="fframe"><i class="fglare" aria-hidden="true"></i>
         <video class="fbg" id="fbg" muted loop playsinline preload="metadata" aria-hidden="true"></video>
         <video class="fmain" id="fmain" playsinline preload="metadata"></video>
         <button class="ffull" id="ffull" aria-label="fullscreen"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
@@ -1591,7 +1606,7 @@ html[data-theme=day] .cb-launch .cbi svg .b2{stroke:#f3e6cb}
     <div class="wrap agrid">
       <div class="a-media rv">
         <div class="a-photo" id="aPhoto"><img src="/assets/img/ilana_full.webp" alt="Ilana Unger" loading="lazy" width="900" height="897"></div>
-        <div class="a-badge"><b>Ilana Unger</b><small data-i18n="heroRole"></small></div>
+        <div class="a-badge"><b>Ilana Unger</b><small data-i18n="heroRole">עורכת דין להגירה ומעמד</small></div>
       </div>
       <div class="a-text">
         <span class="eyebrow rv" data-i18n="aEye">עליי</span>
@@ -1678,7 +1693,7 @@ html[data-theme=day] .cb-launch .cbi svg .b2{stroke:#f3e6cb}
         <div class="faqq"><div class="qlist" id="qlist"><button class="qbtn" data-q="0"><span>כמה זמן נמשך ההליך המדורג?</span><span class="qa" aria-hidden="true"></span></button><button class="qbtn" data-q="1"><span>האם חייבים להיות נשואים?</span><span class="qa" aria-hidden="true"></span></button><button class="qbtn" data-q="2"><span>משרד הפנים סירב. מה עושים?</span><span class="qa" aria-hidden="true"></span></button><button class="qbtn" data-q="3"><span>איך נראה הראיון?</span><span class="qa" aria-hidden="true"></span></button><button class="qbtn" data-q="4"><span>כמה עולה פגישת ייעוץ?</span><span class="qa" aria-hidden="true"></span></button><button class="qbtn" data-q="5"><span>אפשר לקבל ייעוץ ברוסית או באנגלית?</span><span class="qa" aria-hidden="true"></span></button></div>
           <details class="faq-all"><summary data-i18n="faqAll">כל התשובות</summary><dl id="faqAll"><dt>כמה זמן נמשך ההליך המדורג?</dt><dd>בדרך כלל כמה שנים: המעמד ניתן בשלבים ומוארך מעת לעת. משך הזמן המדויק תלוי במצבכם — נבחן אותו בפגישת הייעוץ.</dd><dt>האם חייבים להיות נשואים?</dt><dd>לא. גם ידועים בציבור יכולים לעבור את ההליך, אך עליהם להוכיח חיים משותפים.</dd><dt>משרד הפנים סירב. מה עושים?</dt><dd>על סירוב אפשר להגיש ערר. חשוב לא להתעכב — יש מועדים להגשה. שלחו לי את ההחלטה ואגיד לכם מה האפשרויות.</dd><dt>איך נראה הראיון?</dt><dd>בדרך כלל מראיינים את בני הזוג בנפרד על החיים המשותפים. הכנה עוזרת לענות בביטחון ובדיוק.</dd><dt>כמה עולה פגישת ייעוץ?</dt><dd>פגישת הייעוץ הראשונה ללא עלות. בהמשך המחיר תלוי במורכבות התיק — ואומר לכם אותו מראש.</dd><dt>אפשר לקבל ייעוץ ברוסית או באנגלית?</dt><dd>כן. אני עובדת בעברית, ברוסית ובאנגלית.</dd></dl></details></div>
         <div class="fc rv" id="fc">
-          <div class="fc-h"><img class="av" src="/assets/img/face.webp" alt="" width="46" height="46"><div><b data-i18n="faqName">עו״ד אילנה אונגר</b><small data-i18n="faqRole">עונה על השאלות שלכם</small></div><span class="on" data-i18n="faqOnline">מחוברת</span></div>
+          <div class="fc-h"><span class="mono" aria-hidden="true">IU</span><div><b data-i18n="faqName">עו״ד אילנה אונגר</b><small data-i18n="faqRole">עונה על השאלות שלכם</small></div><span class="on" data-i18n="faqOnline">מחוברת</span></div>
           <div class="fc-b" id="fcB" aria-live="polite"></div>
           <div class="fc-f"><button class="btn btn-g" id="faqAsk"><span data-i18n="faqAsk">לשאול שאלה משלכם</span></button></div>
         </div>
@@ -1703,7 +1718,7 @@ html[data-theme=day] .cb-launch .cbi svg .b2{stroke:#f3e6cb}
       <form class="kform rv" id="leadForm" name="lead" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
         <input type="hidden" name="form-name" value="lead"><input type="hidden" name="lang" value=""><input type="hidden" name="source" value="form"><input type="hidden" name="page" value=""><input type="hidden" name="topic_text" value=""><input type="hidden" name="consent_service" value=""><input type="hidden" name="consent_marketing" value=""><input type="hidden" name="consent_ts" value=""><input type="hidden" name="consent_text_ver" value=""><input type="hidden" name="utm_source" value=""><input type="hidden" name="utm_medium" value=""><input type="hidden" name="utm_campaign" value=""><input type="hidden" name="utm_term" value=""><input type="hidden" name="utm_content" value="">
         <p hidden><label>Don't fill: <input name="bot-field"></label></p>
-        <div class="kf-h"><span class="ki"><svg><use href="#i-wa"/></svg></span><b data-i18n="formH">קביעת ייעוץ</b></div>
+        <div class="kf-h"><a class="ki kf-wa" href="https://wa.me/972528445721" target="_blank" rel="noopener" data-wa data-track="contact_whatsapp" aria-label="WhatsApp"><svg><use href="#i-wa"/></svg></a><b data-i18n="formH">קביעת ייעוץ</b></div>
         <div class="kf-grid">
           <label class="fld"><span><span data-i18n="fName">שם</span> <i>*</i></span><input name="name" autocomplete="name" required></label>
           <label class="fld"><span><span data-i18n="fPhone">טלפון / וואטסאפ</span> <i>*</i></span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" required dir="ltr"></label>
@@ -1764,7 +1779,7 @@ html[data-theme=day] .cb-launch .cbi svg .b2{stroke:#f3e6cb}
 <script>
 /* ============================ TEXTS ============================ */
 const I18N={
-he:{fLegalH:'מידע משפטי',fContH:'יצירת קשר',fRights:'כל הזכויות שמורות',sst:[['בקשה ומסמכים','ראיון זוגי','מעמד ואזרחות'],['הוכחת חיים משותפים','ראיון','תושבות'],['הכנה אישית','סימולציה','ראיון בביטחון'],['ניתוח הסירוב','השגה או ערר','בחינה מחדש'],['בדיקה דיסקרטית','אסטרטגיה','פנייה לרשות'],['שיחת היכרות','עריכת המסמך','הפקדה']],bPriv:'<small>בשליחת המספר אתם מסכימים ל<a href="#privacy" data-legal="privacy">מדיניות הפרטיות</a>. נשתמש בו רק כדי לחזור אליכם.</small>',more:'למידע נוסף',faqAll:'כל התשובות',fCookP:'מדיניות עוגיות',fMkt:'אשמח לקבל עדכונים ומידע מקצועי מהמשרד (לא חובה, אפשר להסיר בכל עת)',fSens:'אנא אל תכתבו כאן מספרי תעודות או פרטים רגישים — נעבור עליהם יחד בפגישה.',cbDisc:'תשובות כלליות בלבד, לא ייעוץ משפטי.',revNote:'ההמלצות פורסמו בהסכמת הלקוחות. כל תיק שונה, ותוצאות קודמות אינן מבטיחות תוצאה דומה.',ftDisc:'המידע באתר הוא כללי ואינו מהווה ייעוץ משפטי.',skip:'דלג לתוכן',logo:'אילנה אונגר',w_hero:'מעמד',w_film:'סרטון',w_prob:'מכירים?',w_about:'עליי',w_svc:'שירותים',w_proc:'הדרך',w_rev:'המלצות',w_faq:'שאלות',sk:['נישואים','ידועים בציבור','ראיון','ערר','מקרים מורכבים','אפוטרופסות'],logoSub:'משרד עורכת דין',nav1:'עליי',nav2:'שירותים',nav3:'איך זה עובד',nav4:'המלצות',nav5:'שאלות',navCta:'לייעוץ ראשוני',
+he:{heroRole:'עורכת דין להגירה ומעמד',fLegalH:'מידע משפטי',fContH:'יצירת קשר',fRights:'כל הזכויות שמורות',sst:[['בקשה ומסמכים','ראיון זוגי','מעמד ואזרחות'],['הוכחת חיים משותפים','ראיון','תושבות'],['הכנה אישית','סימולציה','ראיון בביטחון'],['ניתוח הסירוב','השגה או ערר','בחינה מחדש'],['בדיקה דיסקרטית','אסטרטגיה','פנייה לרשות'],['שיחת היכרות','עריכת המסמך','הפקדה']],bPriv:'<small>בשליחת המספר אתם מסכימים ל<a href="#privacy" data-legal="privacy">מדיניות הפרטיות</a>. נשתמש בו רק כדי לחזור אליכם.</small>',more:'למידע נוסף',faqAll:'כל התשובות',fCookP:'מדיניות עוגיות',fMkt:'אשמח לקבל עדכונים ומידע מקצועי מהמשרד (לא חובה, אפשר להסיר בכל עת)',fSens:'אנא אל תכתבו כאן מספרי תעודות או פרטים רגישים — נעבור עליהם יחד בפגישה.',cbDisc:'תשובות כלליות בלבד, לא ייעוץ משפטי.',revNote:'ההמלצות פורסמו בהסכמת הלקוחות. כל תיק שונה, ותוצאות קודמות אינן מבטיחות תוצאה דומה.',ftDisc:'המידע באתר הוא כללי ואינו מהווה ייעוץ משפטי.',skip:'דלג לתוכן',logo:'אילנה אונגר',w_hero:'מעמד',w_film:'סרטון',w_prob:'מכירים?',w_about:'עליי',w_svc:'שירותים',w_proc:'הדרך',w_rev:'המלצות',w_faq:'שאלות',sk:['נישואים','ידועים בציבור','ראיון','ערר','מקרים מורכבים','אפוטרופסות'],logoSub:'משרד עורכת דין',nav1:'עליי',nav2:'שירותים',nav3:'איך זה עובד',nav4:'המלצות',nav5:'שאלות',navCta:'לייעוץ ראשוני',
 thDay:'מצב יום',thNight:'מצב לילה',
 heroEye:'עורכת דין למעמד בישראל — הליך מדורג',heroH:'<span class="ln"><span>בן או בת הזוג שלך</span></span><span class="ln"><span><em>אינם אזרחי ישראל?</em></span></span>',
 heroSub:'מסמכים, משרד הפנים, ראיונות וסירובים — הדרך למעמד נמשכת שנים. אני מלווה משפחות לאורכה, מהמסמך הראשון ועד התוצאה.',heroCta:'לייעוץ ראשוני ללא עלות',heroVid:'צפו בסרטון',scroll:'גללו',
@@ -1792,7 +1807,7 @@ a11y:'נגישות',aBig:'הגדלת טקסט',aSmall:'הקטנת טקסט',aCon
 legalUpd:'עודכן לאחרונה: 18.11.2026',
 title:'אילנה אונגר — עורכת דין למעמד בישראל | הליך מדורג'},
 
-ru:{fLegalH:'Правовая информация',fContH:'Контакты',fRights:'Все права защищены',sst:[['Заявление и документы','Собеседование пары','Статус и гражданство'],['Доказательства совместной жизни','Собеседование','Постоянное жительство'],['Личная подготовка','Репетиция','Собеседование без страха'],['Разбор отказа','Возражение или апелляция','Пересмотр решения'],['Конфиденциальная проверка','Стратегия','Обращение в МВД'],['Беседа','Составление документа','Депонирование']],bPriv:'<small>Отправляя номер, вы соглашаетесь с <a href="#privacy" data-legal="privacy">политикой конфиденциальности</a>. Мы используем его только чтобы связаться с вами.</small>',more:'Подробнее',faqAll:'Все ответы',fCookP:'Политика cookies',fMkt:'Хочу получать полезные материалы и новости офиса (необязательно, можно отписаться в любой момент)',fSens:'Пожалуйста, не указывайте здесь номера документов и чувствительные подробности — обсудим их на консультации.',cbDisc:'Только общие ответы, не юридическая консультация.',revNote:'Отзывы опубликованы с согласия клиентов. Каждое дело индивидуально, прошлые результаты не гарантируют такого же результата.',ftDisc:'Информация на сайте носит общий характер и не является юридической консультацией.',skip:'Перейти к содержанию',logo:'Ilana Unger',w_hero:'Статус',w_film:'Видео',w_prob:'Знакомо',w_about:'Обо мне',w_svc:'Услуги',w_proc:'Путь',w_rev:'Отзывы',w_faq:'Вопросы',sk:['Брак','Пара','Интервью','Обжалование','Сложные случаи','Опека'],logoSub:'Law Office',nav1:'Обо мне',nav2:'Услуги',nav3:'Как это работает',nav4:'Отзывы',nav5:'Вопросы',navCta:'Консультация',
+ru:{heroRole:'Адвокат по иммиграции и статусу',fLegalH:'Правовая информация',fContH:'Контакты',fRights:'Все права защищены',sst:[['Заявление и документы','Собеседование пары','Статус и гражданство'],['Доказательства совместной жизни','Собеседование','Постоянное жительство'],['Личная подготовка','Репетиция','Собеседование без страха'],['Разбор отказа','Возражение или апелляция','Пересмотр решения'],['Конфиденциальная проверка','Стратегия','Обращение в МВД'],['Беседа','Составление документа','Депонирование']],bPriv:'<small>Отправляя номер, вы соглашаетесь с <a href="#privacy" data-legal="privacy">политикой конфиденциальности</a>. Мы используем его только чтобы связаться с вами.</small>',more:'Подробнее',faqAll:'Все ответы',fCookP:'Политика cookies',fMkt:'Хочу получать полезные материалы и новости офиса (необязательно, можно отписаться в любой момент)',fSens:'Пожалуйста, не указывайте здесь номера документов и чувствительные подробности — обсудим их на консультации.',cbDisc:'Только общие ответы, не юридическая консультация.',revNote:'Отзывы опубликованы с согласия клиентов. Каждое дело индивидуально, прошлые результаты не гарантируют такого же результата.',ftDisc:'Информация на сайте носит общий характер и не является юридической консультацией.',skip:'Перейти к содержанию',logo:'Ilana Unger',w_hero:'Статус',w_film:'Видео',w_prob:'Знакомо',w_about:'Обо мне',w_svc:'Услуги',w_proc:'Путь',w_rev:'Отзывы',w_faq:'Вопросы',sk:['Брак','Пара','Интервью','Обжалование','Сложные случаи','Опека'],logoSub:'Law Office',nav1:'Обо мне',nav2:'Услуги',nav3:'Как это работает',nav4:'Отзывы',nav5:'Вопросы',navCta:'Консультация',
 thDay:'Дневной режим',thNight:'Ночной режим',
 heroEye:'Адвокат по статусу в Израиле — ступенчатая процедура',heroH:'<span class="ln"><span>Ваш любимый человек&nbsp;—</span></span><span class="ln"><span><em>не гражданин Израиля?</em></span></span>',
 heroSub:'Документы, МВД, собеседования, отказы — путь к статусу растягивается на годы. Я провожу семьи по нему от первого документа до результата.',heroCta:'Бесплатная консультация',heroVid:'Видео от Иланы',scroll:'Листайте',
@@ -1820,7 +1835,7 @@ a11y:'Доступность',aBig:'Крупнее текст',aSmall:'Мель�
 legalUpd:'Последнее обновление: 18.11.2026',
 title:'Илана Унгер — адвокат по статусу в Израиле | Ступенчатая процедура'},
 
-en:{fLegalH:'Legal',fContH:'Contact',fRights:'All rights reserved',sst:[['Application & documents','Couple interview','Status & citizenship'],['Proof of shared life','Interview','Residency'],['Personal prep','Mock interview','A confident interview'],['Refusal review','Objection or appeal','Reconsideration'],['Confidential review','Strategy','Filing'],['First talk','Drafting','Deposit']],bPriv:'<small>By sending your number you agree to the <a href="#privacy" data-legal="privacy">Privacy Policy</a>. We’ll use it only to get back to you.</small>',more:'Learn more',faqAll:'All answers',fCookP:'Cookie Policy',fMkt:'I’d like to receive useful updates from the office (optional, unsubscribe any time)',fSens:'Please don’t include ID numbers or sensitive details here — we’ll go through them at the consultation.',cbDisc:'General answers only, not legal advice.',revNote:'Reviews are published with the clients’ consent. Every case is different; past results do not guarantee a similar outcome.',ftDisc:'Information on this site is general and is not legal advice.',skip:'Skip to content',logo:'Ilana Unger',w_hero:'Status',w_film:'Film',w_prob:'Familiar',w_about:'About',w_svc:'Services',w_proc:'The path',w_rev:'Reviews',w_faq:'Questions',sk:['Marriage','Partners','Interview','Appeal','Complex cases','Guardianship'],logoSub:'Law Office',nav1:'About',nav2:'Services',nav3:'How it works',nav4:'Reviews',nav5:'FAQ',navCta:'Consultation',
+en:{heroRole:'Immigration & status lawyer',fLegalH:'Legal',fContH:'Contact',fRights:'All rights reserved',sst:[['Application & documents','Couple interview','Status & citizenship'],['Proof of shared life','Interview','Residency'],['Personal prep','Mock interview','A confident interview'],['Refusal review','Objection or appeal','Reconsideration'],['Confidential review','Strategy','Filing'],['First talk','Drafting','Deposit']],bPriv:'<small>By sending your number you agree to the <a href="#privacy" data-legal="privacy">Privacy Policy</a>. We’ll use it only to get back to you.</small>',more:'Learn more',faqAll:'All answers',fCookP:'Cookie Policy',fMkt:'I’d like to receive useful updates from the office (optional, unsubscribe any time)',fSens:'Please don’t include ID numbers or sensitive details here — we’ll go through them at the consultation.',cbDisc:'General answers only, not legal advice.',revNote:'Reviews are published with the clients’ consent. Every case is different; past results do not guarantee a similar outcome.',ftDisc:'Information on this site is general and is not legal advice.',skip:'Skip to content',logo:'Ilana Unger',w_hero:'Status',w_film:'Film',w_prob:'Familiar',w_about:'About',w_svc:'Services',w_proc:'The path',w_rev:'Reviews',w_faq:'Questions',sk:['Marriage','Partners','Interview','Appeal','Complex cases','Guardianship'],logoSub:'Law Office',nav1:'About',nav2:'Services',nav3:'How it works',nav4:'Reviews',nav5:'FAQ',navCta:'Consultation',
 thDay:'Day mode',thNight:'Night mode',
 heroEye:'Israeli status lawyer — graduated procedure',heroH:'<span class="ln"><span>The one you love</span></span><span class="ln"><span><em>isn’t an Israeli citizen?</em></span></span>',
 heroSub:'Paperwork, the Ministry of Interior, interviews, refusals — the road to status takes years. I guide families along it, from the first document to the result.',heroCta:'Free consultation',heroVid:'Watch the video',scroll:'Scroll',
@@ -2265,7 +2280,7 @@ function askFaq(i,anim){
   const q=S('faq')[i],B=$('#fcB');clearTimeout(faqTimer);
   $$('#qlist .qbtn').forEach((b,k)=>b.classList.toggle('on',k===i));
   B.innerHTML=`<div class="bub me">${q[0]}</div>`;
-  const ans=()=>{B.querySelector('.typing')?.remove();const d=document.createElement('div');d.className='bub her';d.innerHTML=`<img class="bav" src="${FACE}" alt=""><div><small>${S('faqName')}</small>${q[1]}</div>`;B.appendChild(d)};
+  const ans=()=>{B.querySelector('.typing')?.remove();const d=document.createElement('div');d.className='bub her';d.innerHTML=`<small>${S('faqName')}</small>${q[1]}`;B.appendChild(d)};
   if(!anim)return ans();
   const t=document.createElement('div');t.className='bub her typing';t.innerHTML='<i></i><i></i><i></i>';B.appendChild(t);faqTimer=setTimeout(ans,900);
   if(innerWidth<1060){const r=$('#fc').getBoundingClientRect();if(r.top>innerHeight*.6||r.bottom<0)$('#fc').scrollIntoView({behavior:'smooth',block:'center'})}
@@ -2409,6 +2424,11 @@ $('#cbF').addEventListener('submit',e=>{e.preventDefault();const v=cbI.value.tri
   f.style.setProperty('--gx',(50+cx*40).toFixed(1)+'%');f.style.setProperty('--gy',(30+cy*30).toFixed(1)+'%');
   if(Math.abs(tx-cx)>.002||Math.abs(ty-cy)>.002)requestAnimationFrame(loop);else run=false}
 })();
+
+/* section words light up when their section comes into view */
+(function(){const secs=[...document.querySelectorAll('section')].filter(s=>s.querySelector('.sword,.kword'));
+ const o=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('lit',e.isIntersecting)),{threshold:0,rootMargin:'-30% 0px -45% 0px'});
+ secs.forEach(s=>o.observe(s))})();
 
 </script>
 </body>

@@ -145,7 +145,7 @@ function askFaq(i,anim){
   const q=S('faq')[i],B=$('#fcB');clearTimeout(faqTimer);
   $$('#qlist .qbtn').forEach((b,k)=>b.classList.toggle('on',k===i));
   B.innerHTML=`<div class="bub me">${q[0]}</div>`;
-  const ans=()=>{B.querySelector('.typing')?.remove();const d=document.createElement('div');d.className='bub her';d.innerHTML=`<img class="bav" src="${FACE}" alt=""><div><small>${S('faqName')}</small>${q[1]}</div>`;B.appendChild(d)};
+  const ans=()=>{B.querySelector('.typing')?.remove();const d=document.createElement('div');d.className='bub her';d.innerHTML=`<small>${S('faqName')}</small>${q[1]}`;B.appendChild(d)};
   if(!anim)return ans();
   const t=document.createElement('div');t.className='bub her typing';t.innerHTML='<i></i><i></i><i></i>';B.appendChild(t);faqTimer=setTimeout(ans,900);
   if(innerWidth<1060){const r=$('#fc').getBoundingClientRect();if(r.top>innerHeight*.6||r.bottom<0)$('#fc').scrollIntoView({behavior:'smooth',block:'center'})}
@@ -289,3 +289,8 @@ $('#cbF').addEventListener('submit',e=>{e.preventDefault();const v=cbI.value.tri
   f.style.setProperty('--gx',(50+cx*40).toFixed(1)+'%');f.style.setProperty('--gy',(30+cy*30).toFixed(1)+'%');
   if(Math.abs(tx-cx)>.002||Math.abs(ty-cy)>.002)requestAnimationFrame(loop);else run=false}
 })();
+
+/* section words light up when their section comes into view */
+(function(){const secs=[...document.querySelectorAll('section')].filter(s=>s.querySelector('.sword,.kword'));
+ const o=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('lit',e.isIntersecting)),{threshold:0,rootMargin:'-30% 0px -45% 0px'});
+ secs.forEach(s=>o.observe(s))})();
