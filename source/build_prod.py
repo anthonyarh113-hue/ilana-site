@@ -99,6 +99,8 @@ def prerender(h, l):
         f'<button class="qbtn" data-q="{i}"><span>{q[0]}</span><span class="qa" aria-hidden="true"></span></button>'
         for i, q in enumerate(faq)) + '</div>')
     h = h.replace('<dl id="faqAll"></dl>', '<dl id="faqAll">' + ''.join(f'<dt>{q[0]}</dt><dd>{q[1]}</dd>' for q in faq) + '</dl>')
+    for i, st in enumerate(D['sst']):
+        h = h.replace(f'<div class="smst" data-sst="{i}"></div>', f'<div class="smst" data-sst="{i}">' + '<i aria-hidden="true"></i>'.join(f'<span>{x}</span>' for x in st) + '</div>')
     for k, u in SVC_URL.items():
         h = h.replace(f'data-svc="{k}" href="#contact"', f'data-svc="{k}" href="{u[l]}"')
     return h

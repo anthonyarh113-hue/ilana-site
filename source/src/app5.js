@@ -2,6 +2,7 @@
 const PHONE='972528445721';
 const VIDEOS={he:['{{VID:ilana_he}}','{{POSTER:poster_he}}'],ru:['{{VID:ilana_ru}}','{{POSTER:poster_ru}}']};VIDEOS.en=VIDEOS.he; // Netlify: ['/vid/ilana_he.mp4','/img/poster_he.jpg']
 let LANG='he';
+const FACE='{{IMG:face}}';
 const PROD=!!document.documentElement.dataset.base;
 const LANG_URL={he:'/',ru:'/ru/',en:'/en/'};
 const SVC_URL=window.SVC_URL||{};
@@ -25,7 +26,7 @@ function setLang(l,first){
   $('#cbI').placeholder=S('cbPh');$('#leadForm [name=lang]').value=l;
   $('#theme').setAttribute('aria-label',S(isDay()?'thNight':'thDay'));
   renderReviews();renderFaq();renderPvc();buildPassport();setupFilm();setupVideo();setWa();if($('#lgOvl').classList.contains('open'))renderLegal(curDoc);
-  LS.set('lang',l);$$('.smore').forEach(a=>{const u=SVC_URL[a.dataset.svc];if(u&&u[l])a.href=u[l]});if(!first&&!PROD){try{history.replaceState(null,'','#'+l)}catch(e){}}
+  LS.set('lang',l);$$('.smst').forEach(e=>{const st=(S('sst')||[])[+e.dataset.sst]||[];e.innerHTML=st.map(x=>`<span>${x}</span>`).join('<i aria-hidden="true"></i>')});$$('.smore').forEach(a=>{const u=SVC_URL[a.dataset.svc];if(u&&u[l])a.href=u[l]});if(!first&&!PROD){try{history.replaceState(null,'','#'+l)}catch(e){}}
 }
 $$('.langs button').forEach(b=>b.onclick=()=>{if(PROD){if(b.dataset.lang!==LANG){LS.set('lang',b.dataset.lang);location.href=LANG_URL[b.dataset.lang]+location.hash}}else setLang(b.dataset.lang)});
 
@@ -118,7 +119,7 @@ const REV_CFG={photos:false,hide:['freddy']};
 const ini=n=>n.split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase();
 function renderReviews(){
   const tr=$('#revTrack'),list=REVIEWS[LANG].filter(r=>!REV_CFG.hide.includes(r.a)),trm=TR[LANG]||{};
-  tr.innerHTML=list.map(r=>`<figure class="rev"><span class="qm">”</span><span class="stars">★★★★★</span><q>${r.q}</q><figcaption class="who">${REV_CFG.photos?`<img src="${AV[r.a]}" alt="" loading="lazy" width="50" height="50">`:`<span class="rv-ini" aria-hidden="true">${ini(r.n)}</span>`}<span><b>${r.n}</b><small><svg width="12" height="12" fill="currentColor"><use href="#i-fb"/></svg>${S('fbRec')}, ${r.d}</small></span></figcaption>${r.t&&trm[r.t]?`<span class="tr">${trm[r.t]}</span>`:''}</figure>`).join('');
+  tr.innerHTML=list.map(r=>`<figure class="rev"><span class="stars">★★★★★</span><q>${r.q}</q><figcaption class="who">${REV_CFG.photos?`<img src="${AV[r.a]}" alt="" loading="lazy" width="50" height="50">`:`<span class="rv-ini" aria-hidden="true">${ini(r.n)}</span>`}<span><b>${r.n}</b><small><svg width="12" height="12" fill="currentColor"><use href="#i-fb"/></svg>${S('fbRec')}, ${r.d}</small></span></figcaption>${r.t&&trm[r.t]?`<span class="tr">${trm[r.t]}</span>`:''}</figure>`).join('');
   $('#revDots').innerHTML=list.map((_,i)=>`<button aria-label="${i+1}"></button>`).join('');
   $$('#revDots button').forEach((b,i)=>b.onclick=()=>goRev(i));
   tr.scrollLeft=0;requestAnimationFrame(revState);
@@ -144,7 +145,7 @@ function askFaq(i,anim){
   const q=S('faq')[i],B=$('#fcB');clearTimeout(faqTimer);
   $$('#qlist .qbtn').forEach((b,k)=>b.classList.toggle('on',k===i));
   B.innerHTML=`<div class="bub me">${q[0]}</div>`;
-  const ans=()=>{B.querySelector('.typing')?.remove();const d=document.createElement('div');d.className='bub her';d.innerHTML=`<small>${S('faqName')}</small>${q[1]}`;B.appendChild(d)};
+  const ans=()=>{B.querySelector('.typing')?.remove();const d=document.createElement('div');d.className='bub her';d.innerHTML=`<img class="bav" src="${FACE}" alt=""><div><small>${S('faqName')}</small>${q[1]}</div>`;B.appendChild(d)};
   if(!anim)return ans();
   const t=document.createElement('div');t.className='bub her typing';t.innerHTML='<i></i><i></i><i></i>';B.appendChild(t);faqTimer=setTimeout(ans,900);
   if(innerWidth<1060){const r=$('#fc').getBoundingClientRect();if(r.top>innerHeight*.6||r.bottom<0)$('#fc').scrollIntoView({behavior:'smooth',block:'center'})}
@@ -155,7 +156,7 @@ $('#faqAsk').onclick=()=>openChat();
 let PV=null,SR=null,SA=-1;
 function secP(el){const r=el.getBoundingClientRect();return clamp(-r.top/(el.offsetHeight-innerHeight))}
 function onFrame(){
-  const hdr=$('#hdr');hdr.classList.toggle('solid',scrollY>40);
+  const hdr=$('#hdr');if(scrollY>60)hdr.classList.add('solid');else if(scrollY<12)hdr.classList.remove('solid');
   const hr=$('#hero').getBoundingClientRect();heroP=clamp(-hr.top/hr.height);
   document.documentElement.style.setProperty('--atm',Math.max(.18,1-scrollY/(innerHeight*1.1)).toFixed(3));
   // hero portrait + about photo parallax
