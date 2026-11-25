@@ -1087,3 +1087,25 @@ html[data-theme=day] .smw.ill path,html[data-theme=day] .smw.ill circle,html[dat
 html.a-motion .smw.ill .dk{stroke-dashoffset:0;animation:none!important}html.a-motion .smw.ill .pk{opacity:1;transform:none;animation:none!important}
 .smw.ill{transition:opacity .6s var(--ease)!important;clip-path:none!important}.smw.ill:not(.on){opacity:0}
 .cm{grid-template-columns:minmax(0,1fr);width:min(600px,100%);min-height:0;overflow-x:hidden;overflow-y:auto}
+
+/* ===================== v19 — phone ===================== */
+#problem .stage,#process .stage{height:100vh;height:100lvh}
+.qans{display:none}
+@media (max-width:980px){
+  /* contact: form first, then contact cards */
+  .kgrid .kform{order:-1}
+  /* FAQ: simple accordion, no chat window */
+  .faqgrid .fc,.faq-all{display:none!important}
+  .qans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease)}
+  .qans>div{overflow:hidden}
+  .qans p{padding:4px 22px 18px;color:var(--mut);font-size:15.5px;line-height:1.6}
+  .qbtn[aria-expanded=true]+.qans{grid-template-rows:1fr}
+  .qbtn[aria-expanded=true]{border-bottom-left-radius:0;border-bottom-right-radius:0}
+  .qlist{gap:8px}
+  /* only one floating hint at a time */
+  .cb-tip{display:none!important}
+  /* passport: cheaper rendering while scrolling */
+  #pp,#ppIn,#ppCover{will-change:transform}
+  .pp-r,.pp-l,.pp-front,.pp-back{box-shadow:none!important}
+  #problem .pvc{transition:none}
+}

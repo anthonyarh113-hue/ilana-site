@@ -77,14 +77,15 @@ $$('[data-film]').forEach(b=>b.addEventListener('click',()=>{$('#mnav').classLis
 /* ---------------- process: passport stamps ---------------- */
 const STAMP_POS=[{p:'L',x:12,y:12,w:62,r:-9},{p:'L',x:16,y:52,w:76,r:6},{p:'R',x:9,y:9,w:78,r:-4},{p:'R',x:30,y:37,w:62,r:10},{p:'R',x:12,y:57,w:76,r:-6}];
 function fitFs(txt,maxW,base){return Math.min(base,maxW/(Math.max(3,txt.length)*.66))}
+const INK=matchMedia('(max-width:760px)').matches?'':'filter="url(#ink)"';
 function stampSVG(i,title){
   const T=title.toUpperCase?(LANG==='he'?title:title.toUpperCase()):title,n='0'+(i+1);
-  if(i===0)return `<svg viewBox="0 0 160 160"><g filter="url(#ink)"><circle class="s" cx="80" cy="80" r="74" stroke-width="5"/><circle class="s" cx="80" cy="80" r="62" stroke-width="1.6"/><text x="80" y="54" font-size="12" letter-spacing="3">STEP</text><text x="80" y="92" font-size="38">${n}</text><text class="t" x="80" y="118" font-size="${fitFs(T,100,15)}">${T}</text><text x="80" y="136" font-size="9" letter-spacing="2">★ ★ ★</text></g></svg>`;
-  if(i===1)return `<svg viewBox="0 0 220 130"><g filter="url(#ink)"><rect class="s" x="4" y="4" width="212" height="122" rx="12" stroke-width="5"/><rect class="s" x="14" y="14" width="192" height="102" rx="6" stroke-width="1.4" stroke-dasharray="5 4"/><text x="110" y="40" font-size="12" letter-spacing="4">№ ${n} · DOCS</text><text class="t" x="110" y="80" font-size="${fitFs(T,170,30)}">${T}</text><text x="110" y="104" font-size="11" letter-spacing="3">✓ VERIFIED</text></g></svg>`;
-  if(i===2)return `<svg viewBox="0 0 220 140"><g filter="url(#ink)"><ellipse class="s" cx="110" cy="70" rx="104" ry="64" stroke-width="5"/><ellipse class="s" cx="110" cy="70" rx="90" ry="51" stroke-width="1.4"/><text x="110" y="46" font-size="12" letter-spacing="4">ENTRY ${n}</text><text class="t" x="110" y="82" font-size="${fitFs(T,150,26)}">${T}</text><text x="110" y="104" font-size="10" letter-spacing="3">POPULATION AUTH.</text></g></svg>`;
-  if(i===3)return `<svg viewBox="0 0 200 130"><g filter="url(#ink)"><path class="s" d="M8 8h150l34 57-34 57H8z" stroke-width="5"/><path class="s" d="M20 20h132l26 45-26 45H20z" stroke-width="1.4"/><text x="88" y="46" font-size="12" letter-spacing="3">${n} · MEETING</text><text class="t" x="88" y="82" font-size="${fitFs(T,130,26)}">${T}</text><text x="88" y="102" font-size="10" letter-spacing="3">APPROVED</text></g></svg>`;
+  if(i===0)return `<svg viewBox="0 0 160 160"><g ${INK}><circle class="s" cx="80" cy="80" r="74" stroke-width="5"/><circle class="s" cx="80" cy="80" r="62" stroke-width="1.6"/><text x="80" y="54" font-size="12" letter-spacing="3">STEP</text><text x="80" y="92" font-size="38">${n}</text><text class="t" x="80" y="118" font-size="${fitFs(T,100,15)}">${T}</text><text x="80" y="136" font-size="9" letter-spacing="2">★ ★ ★</text></g></svg>`;
+  if(i===1)return `<svg viewBox="0 0 220 130"><g ${INK}><rect class="s" x="4" y="4" width="212" height="122" rx="12" stroke-width="5"/><rect class="s" x="14" y="14" width="192" height="102" rx="6" stroke-width="1.4" stroke-dasharray="5 4"/><text x="110" y="40" font-size="12" letter-spacing="4">№ ${n} · DOCS</text><text class="t" x="110" y="80" font-size="${fitFs(T,170,30)}">${T}</text><text x="110" y="104" font-size="11" letter-spacing="3">✓ VERIFIED</text></g></svg>`;
+  if(i===2)return `<svg viewBox="0 0 220 140"><g ${INK}><ellipse class="s" cx="110" cy="70" rx="104" ry="64" stroke-width="5"/><ellipse class="s" cx="110" cy="70" rx="90" ry="51" stroke-width="1.4"/><text x="110" y="46" font-size="12" letter-spacing="4">ENTRY ${n}</text><text class="t" x="110" y="82" font-size="${fitFs(T,150,26)}">${T}</text><text x="110" y="104" font-size="10" letter-spacing="3">POPULATION AUTH.</text></g></svg>`;
+  if(i===3)return `<svg viewBox="0 0 200 130"><g ${INK}><path class="s" d="M8 8h150l34 57-34 57H8z" stroke-width="5"/><path class="s" d="M20 20h132l26 45-26 45H20z" stroke-width="1.4"/><text x="88" y="46" font-size="12" letter-spacing="3">${n} · MEETING</text><text class="t" x="88" y="82" font-size="${fitFs(T,130,26)}">${T}</text><text x="88" y="102" font-size="10" letter-spacing="3">APPROVED</text></g></svg>`;
   let rays='';for(let k=0;k<24;k++){const a=k/24*Math.PI*2,x1=110+Math.cos(a)*92,y1=110+Math.sin(a)*92,x2=110+Math.cos(a)*104,y2=110+Math.sin(a)*104;rays+=`<line class="s" x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke-width="3"/>`}
-  return `<svg viewBox="0 0 220 220"><g filter="url(#ink)">${rays}<circle class="s" cx="110" cy="110" r="86" stroke-width="5"/><circle class="s" cx="110" cy="110" r="74" stroke-width="1.6"/><path class="s" d="M110 46l6 12 13 2-9 9 2 13-12-6-12 6 2-13-9-9 13-2z" stroke-width="1.8"/><text class="t" x="110" y="124" font-size="${fitFs(T,130,32)}">${T}</text><text x="110" y="150" font-size="12" letter-spacing="4">${n} · ISRAEL</text><text x="110" y="168" font-size="10" letter-spacing="3">ישראל · ИЗРАИЛЬ</text></g></svg>`;
+  return `<svg viewBox="0 0 220 220"><g ${INK}>${rays}<circle class="s" cx="110" cy="110" r="86" stroke-width="5"/><circle class="s" cx="110" cy="110" r="74" stroke-width="1.6"/><path class="s" d="M110 46l6 12 13 2-9 9 2 13-12-6-12 6 2-13-9-9 13-2z" stroke-width="1.8"/><text class="t" x="110" y="124" font-size="${fitFs(T,130,32)}">${T}</text><text x="110" y="150" font-size="12" letter-spacing="4">${n} · ISRAEL</text><text x="110" y="168" font-size="10" letter-spacing="3">ישראל · ИЗРАИЛЬ</text></g></svg>`;
 }
 let PS={els:[],act:-2};
 function buildPassport(){
@@ -143,8 +144,8 @@ $('#rPrev').onclick=()=>goRev(revIdx()-1);$('#rNext').onclick=()=>goRev(revIdx()
 /* ---------------- FAQ: chat with Ilana ---------------- */
 let faqTimer;
 function renderFaq(){
-  const f=S('faq');$('#qlist').innerHTML=f.map((q,i)=>`<button class="qbtn" data-q="${i}"><span>${q[0]}</span><span class="qa" aria-hidden="true"></span></button>`).join('');
-  $$('#qlist .qbtn').forEach(b=>b.onclick=()=>{askFaq(+b.dataset.q,true)});
+  const f=S('faq');$('#qlist').innerHTML=f.map((q,i)=>`<button class="qbtn" data-q="${i}" aria-expanded="false"><span>${q[0]}</span><span class="qa" aria-hidden="true"></span></button><div class="qans" role="region"><div><p>${q[1]}</p></div></div>`).join('');
+  $$('#qlist .qbtn').forEach(b=>b.onclick=()=>{if(matchMedia('(max-width:980px)').matches){const o=b.getAttribute('aria-expanded')!=='true';$$('#qlist .qbtn').forEach(x=>{x.setAttribute('aria-expanded','false');x.classList.remove('on')});if(o){b.setAttribute('aria-expanded','true');b.classList.add('on')}return}askFaq(+b.dataset.q,true)});
   const fa=$('#faqAll');if(fa)fa.innerHTML=f.map(q=>`<dt>${q[0]}</dt><dd>${q[1]}</dd>`).join('');
   askFaq(0,false);
 }
@@ -161,10 +162,10 @@ $('#faqAsk').onclick=()=>openChat();
 
 /* ---------------- scroll loop ---------------- */
 let PV=null,SR=null,SA=-1;
-function secP(el){const r=el.getBoundingClientRect();return clamp(-r.top/(el.offsetHeight-innerHeight))}
+function secP(el){const r=el.getBoundingClientRect(),st=el._st||(el._st=el.querySelector('.stage')),vh=st?st.offsetHeight:innerHeight;return clamp(-r.top/(el.offsetHeight-vh))}
 const EL={};function el(k,s){return EL[k]||(EL[k]=$(s))}
 const LITE=matchMedia('(max-width:760px),(prefers-reduced-motion:reduce)').matches;
-let lastY=-1,dirty=true;addEventListener('resize',()=>{dirty=true;SR=null});
+let lastY=-1,dirty=true,lastW=innerWidth;addEventListener('resize',()=>{if(innerWidth!==lastW||!LITE){lastW=innerWidth;dirty=true;SR=null}});
 function inView(e){const r=e.getBoundingClientRect();return r.bottom>-50&&r.top<innerHeight+50}
 function onFrame(){
   if(scrollY===lastY&&!dirty){requestAnimationFrame(onFrame);return}
