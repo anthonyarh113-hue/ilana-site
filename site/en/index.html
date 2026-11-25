@@ -1499,6 +1499,40 @@ html[lang=he] .a-badge small{letter-spacing:.04em;font-size:14px}
 .a-badge,html[dir=rtl] .a-badge{margin-top:-56px}
 .a-photo{-webkit-mask-image:radial-gradient(closest-side ellipse at 50% 50%,#000 62%,rgba(0,0,0,.55) 82%,transparent 100%);mask-image:radial-gradient(closest-side ellipse at 50% 50%,#000 62%,rgba(0,0,0,.55) 82%,transparent 100%)}
 
+/* ===================== v15: words first, content after ===================== */
+:root{--swfs:clamp(60px,10vw,172px);--swtop:clamp(18px,2.4vw,40px)}
+.sword{font-size:var(--swfs)}
+/* regular sections: the word sits in the flow, content starts below it */
+.sec>.sword{position:relative;display:block;left:auto;top:auto;transform:none;text-align:center;margin:var(--swtop) auto clamp(14px,2vw,34px);width:100%;overflow:hidden}
+.sec{padding-top:clamp(70px,7vw,110px)}
+.film{padding-top:clamp(70px,7vw,110px)!important}
+/* contact: same order */
+.contact .kword{position:relative;display:block;left:auto;top:auto;transform:none;text-align:center;margin:var(--swtop) auto clamp(14px,2vw,34px);font-size:var(--swfs);line-height:.9;width:100%;overflow:hidden}
+.contact{padding-top:clamp(70px,7vw,110px)}
+.khead{padding-top:0}
+/* pinned sections: word under the header, stage content below it */
+#problem .stage>.sword,#process .stage>.sword{top:calc(70px + var(--swtop) * .4)}
+#problem .pv{padding-top:calc(70px + var(--swfs) * .9 + 18px);padding-bottom:24px;justify-content:center}
+#process .prv{padding-top:calc(70px + var(--swfs) * .9 + 14px);padding-bottom:20px}
+#process #pp{max-height:calc(100vh - 70px - var(--swfs) * .9 - 60px);max-height:calc(100dvh - 70px - var(--swfs) * .9 - 60px)}
+@media (min-width:981px){#problem .pvc{top:calc(50% + (70px + var(--swfs) * .9) / 2)}}
+@media (max-width:980px){#problem .pv{padding-top:calc(64px + var(--swfs) * .9 + 12px)}#process .prv{padding-top:calc(64px + var(--swfs) * .9 + 10px)}}
+
+/* the word stays lit while you are in its section */
+.lit .sword,.lit .kword{opacity:1;animation:swordSheen 2.4s .1s var(--ease) both,swordGlow 3.6s 2.4s ease-in-out infinite}
+@keyframes swordGlow{0%,100%{filter:drop-shadow(0 0 14px rgba(var(--acc-rgb),.22))}50%{filter:drop-shadow(0 0 34px rgba(var(--acc-rgb),.5))}}
+.sword,.kword{opacity:.4}
+html[data-theme=day] .lit .sword,html[data-theme=day] .lit .kword{background:linear-gradient(100deg,rgba(91,52,24,.34) 0%,rgba(91,52,24,.34) 38%,rgba(187,149,100,.85) 50%,rgba(91,52,24,.34) 62%,rgba(91,52,24,.34) 100%),linear-gradient(180deg,rgba(91,52,24,.3),rgba(91,52,24,.06) 90%);background-size:300% 100%,100% 100%;-webkit-background-clip:text;background-clip:text}
+.lit .sword,.lit .kword{background-color:transparent}
+html:not([data-theme=day]) .lit .sword,html:not([data-theme=day]) .lit .kword{background:linear-gradient(100deg,rgba(236,220,186,.5) 0%,rgba(236,220,186,.5) 38%,rgba(255,236,200,.95) 50%,rgba(236,220,186,.5) 62%,rgba(236,220,186,.5) 100%),linear-gradient(180deg,rgba(236,226,204,.45),rgba(236,226,204,.08) 90%);background-size:300% 100%,100% 100%;-webkit-background-clip:text;background-clip:text}
+html.a-motion .lit .sword,html.a-motion .lit .kword{animation:none}
+
+/* header strip: a clearly visible gradient in both themes */
+.hdr::before{background:linear-gradient(100deg,#1b1f17 0%,rgba(43,43,17,.96) 35%,rgba(88,93,61,.92) 65%,rgba(126,94,52,.92) 100%)}
+html[dir=rtl] .hdr::before{background:linear-gradient(260deg,#1b1f17 0%,rgba(43,43,17,.96) 35%,rgba(88,93,61,.92) 65%,rgba(126,94,52,.92) 100%)}
+html[data-theme=day] .hdr::before{background:linear-gradient(100deg,rgba(248,246,238,.97) 0%,rgba(222,226,206,.95) 40%,rgba(205,203,195,.94) 65%,rgba(214,182,132,.95) 100%)}
+html[dir=rtl][data-theme=day] .hdr::before{background:linear-gradient(260deg,rgba(248,246,238,.97) 0%,rgba(222,226,206,.95) 40%,rgba(205,203,195,.94) 65%,rgba(214,182,132,.95) 100%)}
+
 </style>
 </head>
 <body>
@@ -1612,7 +1646,7 @@ html[lang=he] .a-badge small{letter-spacing:.04em;font-size:14px}
         <span class="eyebrow rv" data-i18n="aEye">About</span>
         <h2 class="h2 rv" data-i18n="aH">I’m Ilana Unger<br><em>With you every step of the way</em></h2>
         <p class="lead rv" data-i18n="aP">An immigration and status lawyer. I study your situation, build a personal plan, prepare the documents, handle your applications to the Ministry of Interior and prepare you for the interview. You always know what’s happening — and you never face the system alone.</p>
-        <ul class="a-points rv"><li><span data-i18n="c1">Personal plan</span></li><li><span data-i18n="c2">Guidance through to the result</span></li><li><span data-i18n="c3">עברית, Русский, English</span></li></ul>
+        <ul class="a-points rv"><li><span data-i18n="c1">Personal plan</span></li><li><span data-i18n="c2">Guidance through to the result</span></li></ul>
         <div class="cta-row rv" style="justify-content:flex-start">
           <a href="#contact" class="btn btn-p"><span data-i18n="aCta">Book a consultation</span></a>
           <button class="btn btn-g" data-film><i class="play"></i><span data-i18n="heroVid">Watch the video</span></button>
