@@ -1695,6 +1695,50 @@ html[lang=he] .pvc-r{text-transform:none;letter-spacing:0}
 .cm{width:min(1140px,100%);min-height:min(640px,calc(100dvh - 40px))}
 @media (max-width:760px){:root{--swfs:clamp(44px,14.5vw,76px)}.cm{min-height:0}}
 
+/* ===================== v18: service illustrations ===================== */
+.smw.ill{inset:10% 8% 16%;align-items:center;justify-content:center}
+.smw.ill svg{width:100%;max-width:440px;height:auto;overflow:visible}
+.smw.ill path,.smw.ill circle,.smw.ill rect{fill:none;stroke:var(--acc);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+html[data-theme=day] .smw.ill path,html[data-theme=day] .smw.ill circle,html[data-theme=day] .smw.ill rect{stroke:#6d4a26}
+.smw.ill .dk{stroke-dasharray:1;stroke-dashoffset:1}
+.smw.ill .pk{opacity:0;transform:scale(.4)}
+.smw.ill .seal{fill:rgba(var(--acc-rgb),.16)!important}
+.smw.ill .tick{stroke-width:3.2!important}
+.smw.ill .bub{fill:rgba(var(--acc-rgb),.1)!important}
+.smw.ill .dots{stroke-width:7!important}
+.smw.ill .fillh{fill:rgba(194,85,63,.85)!important;stroke:none!important}
+.smw.ill .rej rect,.smw.ill .rej path{stroke:#c2553f!important;stroke-width:3!important}
+.smw.ill .rej{animation-name:rejA!important}
+.smw.ill .sealin{stroke-dasharray:3 4}
+.smw.ill .spark path{stroke-width:2}
+.smw.ill svg{filter:drop-shadow(0 0 10px rgba(var(--acc-rgb),.35))}
+@media (max-width:760px){.smw.ill svg{filter:none}}
+@keyframes dr1{0%,0%{stroke-dashoffset:1;opacity:1}10%,86%{stroke-dashoffset:0;opacity:1}94%,100%{stroke-dashoffset:0;opacity:0}}
+@keyframes pp1{0%,0%{opacity:0;transform:scale(.4)}4%{opacity:1;transform:scale(1.12)}7%,86%{opacity:1;transform:scale(1)}94%,100%{opacity:0;transform:scale(1)}}
+.smw.ill.on .dk.k1{animation:dr1 8s .3s var(--ease) infinite}
+.smw.ill.on .pk.k1{animation:pp1 8s .3s cubic-bezier(.2,1.3,.4,1) infinite}
+@keyframes dr2{0%,10%{stroke-dashoffset:1;opacity:1}20%,86%{stroke-dashoffset:0;opacity:1}94%,100%{stroke-dashoffset:0;opacity:0}}
+@keyframes pp2{0%,10%{opacity:0;transform:scale(.4)}14%{opacity:1;transform:scale(1.12)}17%,86%{opacity:1;transform:scale(1)}94%,100%{opacity:0;transform:scale(1)}}
+.smw.ill.on .dk.k2{animation:dr2 8s .3s var(--ease) infinite}
+.smw.ill.on .pk.k2{animation:pp2 8s .3s cubic-bezier(.2,1.3,.4,1) infinite}
+@keyframes dr3{0%,20%{stroke-dashoffset:1;opacity:1}30%,86%{stroke-dashoffset:0;opacity:1}94%,100%{stroke-dashoffset:0;opacity:0}}
+@keyframes pp3{0%,20%{opacity:0;transform:scale(.4)}24%{opacity:1;transform:scale(1.12)}27%,86%{opacity:1;transform:scale(1)}94%,100%{opacity:0;transform:scale(1)}}
+.smw.ill.on .dk.k3{animation:dr3 8s .3s var(--ease) infinite}
+.smw.ill.on .pk.k3{animation:pp3 8s .3s cubic-bezier(.2,1.3,.4,1) infinite}
+@keyframes dr4{0%,30%{stroke-dashoffset:1;opacity:1}40%,86%{stroke-dashoffset:0;opacity:1}94%,100%{stroke-dashoffset:0;opacity:0}}
+@keyframes pp4{0%,30%{opacity:0;transform:scale(.4)}34%{opacity:1;transform:scale(1.12)}37%,86%{opacity:1;transform:scale(1)}94%,100%{opacity:0;transform:scale(1)}}
+.smw.ill.on .dk.k4{animation:dr4 8s .3s var(--ease) infinite}
+.smw.ill.on .pk.k4{animation:pp4 8s .3s cubic-bezier(.2,1.3,.4,1) infinite}
+@keyframes dr5{0%,40%{stroke-dashoffset:1;opacity:1}48%,86%{stroke-dashoffset:0;opacity:1}94%,100%{stroke-dashoffset:0;opacity:0}}
+@keyframes pp5{0%,40%{opacity:0;transform:scale(.4)}44%{opacity:1;transform:scale(1.12)}47%,86%{opacity:1;transform:scale(1)}94%,100%{opacity:0;transform:scale(1)}}
+.smw.ill.on .dk.k5{animation:dr5 8s .3s var(--ease) infinite}
+.smw.ill.on .pk.k5{animation:pp5 8s .3s cubic-bezier(.2,1.3,.4,1) infinite}
+@keyframes rejA{0%,10%{opacity:0;transform:scale(2) rotate(-10deg)}14%{opacity:1;transform:scale(1) rotate(-8deg)}28%{opacity:1;transform:scale(1) rotate(-8deg)}32%,100%{opacity:0;transform:scale(1) rotate(-8deg)}}
+.smw.ill.on .rej{animation:rejA 8s .3s ease-out infinite!important}
+html.a-motion .smw.ill .dk{stroke-dashoffset:0;animation:none!important}html.a-motion .smw.ill .pk{opacity:1;transform:none;animation:none!important}
+.smw.ill{transition:opacity .6s var(--ease)!important;clip-path:none!important}.smw.ill:not(.on){opacity:0}
+.cm{grid-template-columns:minmax(0,1fr);width:min(600px,100%);min-height:0;overflow-x:hidden;overflow-y:auto}
+
 </style>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});</script>
 </head>
@@ -1825,7 +1869,7 @@ html[lang=he] .pvc-r{text-transform:none;letter-spacing:0}
       <div class="sgrid">
         <div class="smedia">
           <div class="sm-card" id="smCard">
-            <div class="sm-words" id="smWords"><div class="smw"><b data-i18n-sk="0"></b><div class="smst" data-sst="0"></div></div><div class="smw"><b data-i18n-sk="1"></b><div class="smst" data-sst="1"></div></div><div class="smw"><b data-i18n-sk="2"></b><div class="smst" data-sst="2"></div></div><div class="smw"><b data-i18n-sk="3"></b><div class="smst" data-sst="3"></div></div><div class="smw"><b data-i18n-sk="4"></b><div class="smst" data-sst="4"></div></div><div class="smw"><b data-i18n-sk="5"></b><div class="smst" data-sst="5"></div></div></div>
+            <div class="sm-words" id="smWords"><div class="smw ill"><svg viewBox="0 0 400 300" aria-hidden="true"><circle class="dk k1" pathLength="1" cx="165" cy="105" r="38"/><circle class="dk k2" pathLength="1" cx="215" cy="105" r="38"/><g class="pk k2 spark" style="transform-origin:190px 60px"><path d="M190 52v-14M178 58l-9-9M202 58l9-9"/></g><path class="dk k3" pathLength="1" d="M110 175 h180 a10 10 0 0 1 10 10 v70 a10 10 0 0 1 -10 10 h-180 a10 10 0 0 1 -10 -10 v-70 a10 10 0 0 1 10 -10z"/><circle class="dk k4" pathLength="1" cx="145" cy="220" r="18"/><path class="dk k4" pathLength="1" d="M180 205 h90 M180 225 h70 M180 245 h50"/><g class="pk k5" style="transform-origin:300px 255px"><circle class="seal" cx="300" cy="255" r="26"/><path class="tick" d="M289 255 l7 7 l14 -15"/></g></svg></div><div class="smw ill"><svg viewBox="0 0 400 300" aria-hidden="true"><path class="dk k1" pathLength="1" d="M105 150 L200 75 L295 150"/><path class="dk k2" pathLength="1" d="M122 138 V245 H278 V138"/><circle class="dk k3" pathLength="1" cx="178" cy="194" r="11"/><circle class="dk k3" pathLength="1" cx="222" cy="194" r="11"/><path class="dk k3" pathLength="1" d="M158 238 a20 20 0 0 1 40 0 M202 238 a20 20 0 0 1 40 0"/><g class="pk k4" style="transform-origin:200px 118px"><path class="fillh" d="M200 130 c-14 -10 -20 -16 -20 -24 a10 10 0 0 1 20 -4 a10 10 0 0 1 20 4 c0 8 -6 14 -20 24z"/></g><g class="pk k5" style="transform-origin:300px 245px"><circle class="seal" cx="300" cy="245" r="26"/><path class="tick" d="M289 245 l7 7 l14 -15"/></g></svg></div><div class="smw ill"><svg viewBox="0 0 400 300" aria-hidden="true"><path class="dk k1" pathLength="1" d="M110 215 H290 M130 215 V255 M270 215 V255"/><path class="dk k2" pathLength="1" d="M95 255 V185 M95 215 H125 M305 255 V185 M305 215 H275"/><g class="pk k3" style="transform-origin:140px 120px"><rect class="bub" x="95" y="95" width="100" height="52" rx="16"/><path class="dots" d="M125 121h.1M145 121h.1M165 121h.1"/></g><g class="pk k4" style="transform-origin:260px 140px"><rect class="bub" x="205" y="112" width="100" height="52" rx="16"/><path class="dots" d="M235 138h.1M255 138h.1M275 138h.1"/></g><g class="pk k5" style="transform-origin:200px 65px"><circle class="seal" cx="200" cy="65" r="26"/><path class="tick" d="M189 65 l7 7 l14 -15"/></g></svg></div><div class="smw ill"><svg viewBox="0 0 400 300" aria-hidden="true"><path class="dk k1" pathLength="1" d="M130 70 h110 l30 30 v150 h-140z M240 70 v30 h30"/><path class="dk k1" pathLength="1" d="M150 130 h90 M150 155 h90 M150 180 h60"/><g class="pk k2 rej" style="transform-origin:205px 200px"><rect x="150" y="180" width="110" height="44" rx="6"/><path d="M188 190 l24 24 M212 190 l-24 24"/></g><path class="dk k3" pathLength="1" d="M300 230 C 330 180 330 120 300 85"/><path class="dk k3" pathLength="1" d="M290 95 l10 -12 l12 8"/><g class="pk k4" style="transform-origin:205px 202px"><circle class="seal" cx="205" cy="202" r="26"/><path class="tick" d="M194 202 l7 7 l14 -15"/></g></svg></div><div class="smw ill"><svg viewBox="0 0 400 300" aria-hidden="true"><path class="dk k1" pathLength="1" d="M80 230 C 120 150 160 260 150 180 S 90 120 140 110 S 210 190 180 150 S 150 80 200 100"/><path class="dk k3" pathLength="1" d="M200 100 L 300 100"/><circle class="dk k4" pathLength="1" cx="320" cy="100" r="18"/><circle class="dk k4" pathLength="1" cx="320" cy="100" r="6"/><g class="pk k5" style="transform-origin:320px 210px"><circle class="seal" cx="320" cy="210" r="26"/><path class="tick" d="M309 210 l7 7 l14 -15"/></g></svg></div><div class="smw ill"><svg viewBox="0 0 400 300" aria-hidden="true"><path class="dk k1" pathLength="1" d="M120 60 h160 v190 h-160z"/><path class="dk k2" pathLength="1" d="M145 95 h110 M145 120 h110 M145 145 h80"/><path class="dk k3" pathLength="1" d="M145 205 c15 -25 25 15 38 -6 s18 -10 26 2 s12 8 30 -4"/><g class="pk k4" style="transform-origin:262px 222px"><circle class="seal" cx="262" cy="222" r="24"/><circle class="sealin" cx="262" cy="222" r="15"/></g><g class="pk k5" style="transform-origin:300px 95px"><circle class="seal" cx="300" cy="95" r="26"/><path class="tick" d="M289 95 l7 7 l14 -15"/></g></svg></div></div>
             <div class="sm-foot"><span class="sm-bar"><i id="smBar"></i></span></div>
           </div>
         </div>
@@ -1968,7 +2012,6 @@ html[lang=he] .pvc-r{text-transform:none;letter-spacing:0}
 <div class="ovl cm-ovl" id="cmOvl" role="dialog" aria-modal="true" aria-labelledby="cmT">
   <div class="cm">
     <button class="x" data-close aria-label="close"></button>
-    <div class="cm-side" aria-hidden="true"><div class="cm-glow"></div><span class="cm-word" data-i18n="cmWord"></span><ul class="cm-pts"><li data-i18n="cmP1"></li><li data-i18n="cmP2"></li><li data-i18n="cmP3"></li></ul></div>
     <div class="cm-main">
       <span class="eyebrow" data-i18n="cmEye"></span>
       <h2 class="cm-t" id="cmT"></h2>

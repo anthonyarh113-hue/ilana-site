@@ -1043,3 +1043,47 @@ html[lang=he] .pvc-r{text-transform:none;letter-spacing:0}
 .cm-word{font-size:clamp(34px,14cqi,84px);max-width:calc(100% - 10px);overflow-wrap:anywhere}
 .cm{width:min(1140px,100%);min-height:min(640px,calc(100dvh - 40px))}
 @media (max-width:760px){:root{--swfs:clamp(44px,14.5vw,76px)}.cm{min-height:0}}
+
+/* ===================== v18: service illustrations ===================== */
+.smw.ill{inset:10% 8% 16%;align-items:center;justify-content:center}
+.smw.ill svg{width:100%;max-width:440px;height:auto;overflow:visible}
+.smw.ill path,.smw.ill circle,.smw.ill rect{fill:none;stroke:var(--acc);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+html[data-theme=day] .smw.ill path,html[data-theme=day] .smw.ill circle,html[data-theme=day] .smw.ill rect{stroke:#6d4a26}
+.smw.ill .dk{stroke-dasharray:1;stroke-dashoffset:1}
+.smw.ill .pk{opacity:0;transform:scale(.4)}
+.smw.ill .seal{fill:rgba(var(--acc-rgb),.16)!important}
+.smw.ill .tick{stroke-width:3.2!important}
+.smw.ill .bub{fill:rgba(var(--acc-rgb),.1)!important}
+.smw.ill .dots{stroke-width:7!important}
+.smw.ill .fillh{fill:rgba(194,85,63,.85)!important;stroke:none!important}
+.smw.ill .rej rect,.smw.ill .rej path{stroke:#c2553f!important;stroke-width:3!important}
+.smw.ill .rej{animation-name:rejA!important}
+.smw.ill .sealin{stroke-dasharray:3 4}
+.smw.ill .spark path{stroke-width:2}
+.smw.ill svg{filter:drop-shadow(0 0 10px rgba(var(--acc-rgb),.35))}
+@media (max-width:760px){.smw.ill svg{filter:none}}
+@keyframes dr1{0%,0%{stroke-dashoffset:1;opacity:1}10%,86%{stroke-dashoffset:0;opacity:1}94%,100%{stroke-dashoffset:0;opacity:0}}
+@keyframes pp1{0%,0%{opacity:0;transform:scale(.4)}4%{opacity:1;transform:scale(1.12)}7%,86%{opacity:1;transform:scale(1)}94%,100%{opacity:0;transform:scale(1)}}
+.smw.ill.on .dk.k1{animation:dr1 8s .3s var(--ease) infinite}
+.smw.ill.on .pk.k1{animation:pp1 8s .3s cubic-bezier(.2,1.3,.4,1) infinite}
+@keyframes dr2{0%,10%{stroke-dashoffset:1;opacity:1}20%,86%{stroke-dashoffset:0;opacity:1}94%,100%{stroke-dashoffset:0;opacity:0}}
+@keyframes pp2{0%,10%{opacity:0;transform:scale(.4)}14%{opacity:1;transform:scale(1.12)}17%,86%{opacity:1;transform:scale(1)}94%,100%{opacity:0;transform:scale(1)}}
+.smw.ill.on .dk.k2{animation:dr2 8s .3s var(--ease) infinite}
+.smw.ill.on .pk.k2{animation:pp2 8s .3s cubic-bezier(.2,1.3,.4,1) infinite}
+@keyframes dr3{0%,20%{stroke-dashoffset:1;opacity:1}30%,86%{stroke-dashoffset:0;opacity:1}94%,100%{stroke-dashoffset:0;opacity:0}}
+@keyframes pp3{0%,20%{opacity:0;transform:scale(.4)}24%{opacity:1;transform:scale(1.12)}27%,86%{opacity:1;transform:scale(1)}94%,100%{opacity:0;transform:scale(1)}}
+.smw.ill.on .dk.k3{animation:dr3 8s .3s var(--ease) infinite}
+.smw.ill.on .pk.k3{animation:pp3 8s .3s cubic-bezier(.2,1.3,.4,1) infinite}
+@keyframes dr4{0%,30%{stroke-dashoffset:1;opacity:1}40%,86%{stroke-dashoffset:0;opacity:1}94%,100%{stroke-dashoffset:0;opacity:0}}
+@keyframes pp4{0%,30%{opacity:0;transform:scale(.4)}34%{opacity:1;transform:scale(1.12)}37%,86%{opacity:1;transform:scale(1)}94%,100%{opacity:0;transform:scale(1)}}
+.smw.ill.on .dk.k4{animation:dr4 8s .3s var(--ease) infinite}
+.smw.ill.on .pk.k4{animation:pp4 8s .3s cubic-bezier(.2,1.3,.4,1) infinite}
+@keyframes dr5{0%,40%{stroke-dashoffset:1;opacity:1}48%,86%{stroke-dashoffset:0;opacity:1}94%,100%{stroke-dashoffset:0;opacity:0}}
+@keyframes pp5{0%,40%{opacity:0;transform:scale(.4)}44%{opacity:1;transform:scale(1.12)}47%,86%{opacity:1;transform:scale(1)}94%,100%{opacity:0;transform:scale(1)}}
+.smw.ill.on .dk.k5{animation:dr5 8s .3s var(--ease) infinite}
+.smw.ill.on .pk.k5{animation:pp5 8s .3s cubic-bezier(.2,1.3,.4,1) infinite}
+@keyframes rejA{0%,10%{opacity:0;transform:scale(2) rotate(-10deg)}14%{opacity:1;transform:scale(1) rotate(-8deg)}28%{opacity:1;transform:scale(1) rotate(-8deg)}32%,100%{opacity:0;transform:scale(1) rotate(-8deg)}}
+.smw.ill.on .rej{animation:rejA 8s .3s ease-out infinite!important}
+html.a-motion .smw.ill .dk{stroke-dashoffset:0;animation:none!important}html.a-motion .smw.ill .pk{opacity:1;transform:none;animation:none!important}
+.smw.ill{transition:opacity .6s var(--ease)!important;clip-path:none!important}.smw.ill:not(.on){opacity:0}
+.cm{grid-template-columns:minmax(0,1fr);width:min(600px,100%);min-height:0;overflow-x:hidden;overflow-y:auto}
