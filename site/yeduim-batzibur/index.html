@@ -95,6 +95,22 @@ footer .wrap{display:grid;gap:10px}footer nav{display:flex;flex-wrap:wrap;gap:16
  .cta .row{flex-direction:column}.cta .btn{width:100%}
 }
 .cta .btn{font-size:12px;padding:0 14px;white-space:nowrap}html[lang=he] .cta .btn{font-size:14px}
+.sm-ovl{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:16px;background:rgba(5,5,3,.62);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);opacity:0;transition:opacity .4s}
+.sm-ovl.open{opacity:1}
+.sm-box{position:relative;width:min(480px,100%);padding:30px;border-radius:26px;background:var(--bg) var(--tex) center/cover;border:1px solid rgba(var(--acc-rgb),.4);box-shadow:0 50px 120px -40px rgba(0,0,0,.8);transform:translateY(20px);transition:transform .5s}
+.sm-ovl.open .sm-box{transform:none}
+.sm-box h2{margin-bottom:6px}.sm-box>p{color:var(--mut);margin-bottom:18px}
+.sm-box form{display:grid;gap:12px}
+.sm-box label{display:grid;gap:6px;font-size:13px;color:var(--mut)}
+.sm-box input:not([type=checkbox]){height:48px;border-radius:12px;padding:0 14px;font:inherit;font-size:15px;color:var(--ink);background:rgba(255,255,255,.07);border:1px solid rgba(var(--acc-rgb),.35)}
+html[data-theme=day] .sm-box input:not([type=checkbox]){background:rgba(255,255,255,.6)}
+.sm-box .cc{display:flex;gap:10px;align-items:flex-start;font-size:12.5px}.sm-box .cc a{color:var(--acc)}
+.sm-box form.err .cc{color:#d77a63}
+.sm-box .btn{width:100%;margin-top:6px}
+.sm-x{position:absolute;top:12px;inset-inline-end:14px;width:34px;height:34px;border-radius:50%;background:none;border:0;color:var(--ink);font-size:22px;cursor:pointer}
+.sm-box .ok{padding:16px;border-radius:14px;background:rgba(var(--acc-rgb),.14);color:var(--ink)}
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;opacity:0}
+.sm-ovl[hidden]{display:none}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": ["LegalService", "LocalBusiness"], "@id": "https://ilanaungerlaw.com/#office", "name": "Ilana Unger Law Office", "alternateName": ["משרד עורכת הדין אילנה אונגר", "Адвокатская контора Иланы Унгер", "Adv. Ilana Unger"], "url": "https://ilanaungerlaw.com/", "telephone": "+972-52-844-5721", "email": "ilana.unger.law@gmail.com", "image": "https://ilanaungerlaw.com/assets/img/ilana_full.webp", "logo": "https://ilanaungerlaw.com/apple-touch-icon.png", "founder": {"@id": "https://ilanaungerlaw.com/#ilana"}, "areaServed": {"@type": "Country", "name": "Israel"}, "availableLanguage": ["Hebrew", "Russian", "English"], "knowsAbout": ["Israeli immigration law", "Graduated procedure for foreign spouses", "Common-law partner status (yeduim batzibur)", "Family reunification in Israel", "Population and Immigration Authority interviews", "Appeals Tribunal (Entry into Israel Law)", "Lasting power of attorney", "Guardianship"], "sameAs": ["https://www.instagram.com/ilana.unger.law/"], "contactPoint": {"@type": "ContactPoint", "telephone": "+972-52-844-5721", "contactType": "customer service", "availableLanguage": ["Hebrew", "Russian", "English"], "areaServed": "IL"}, "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Legal services", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Graduated procedure for married spouses", "url": "https://ilanaungerlaw.com/en/graduated-procedure-spouses/"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Status for common-law partners", "url": "https://ilanaungerlaw.com/en/common-law-partners-status/"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Ministry of Interior interview preparation", "url": "https://ilanaungerlaw.com/en/interview-preparation/"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Appealing a Ministry of Interior refusal", "url": "https://ilanaungerlaw.com/en/appeal-refusal/"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Complex status cases", "url": "https://ilanaungerlaw.com/en/complex-cases/"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Lasting power of attorney & guardianship", "url": "https://ilanaungerlaw.com/en/lasting-power-of-attorney/"}}]}}, {"@type": "Person", "@id": "https://ilanaungerlaw.com/#ilana", "name": "Ilana Unger", "alternateName": ["אילנה אונגר", "Илана Унгер"], "jobTitle": "Attorney, member of the Israel Bar Association", "worksFor": {"@id": "https://ilanaungerlaw.com/#office"}, "image": "https://ilanaungerlaw.com/assets/img/ilana_full.webp", "knowsLanguage": ["he", "ru", "en"], "knowsAbout": ["Israeli immigration law", "Graduated procedure for foreign spouses", "Common-law partner status (yeduim batzibur)", "Family reunification in Israel", "Population and Immigration Authority interviews", "Appeals Tribunal (Entry into Israel Law)", "Lasting power of attorney", "Guardianship"], "sameAs": ["https://www.instagram.com/ilana.unger.law/"], "url": "https://ilanaungerlaw.com/"}, {"@type": "Service", "@id": "https://ilanaungerlaw.com/yeduim-batzibur/#service", "name": "מעמד לידועים בציבור", "description": "הסדרת מעמד לבן/בת זוג זר/ה של ישראלי/ת ללא נישואין (ידועים בציבור), כולל זוגות בני אותו מין: הוכחת חיים משותפים, מסמכים, ראיון וליווי בהליך.", "url": "https://ilanaungerlaw.com/yeduim-batzibur/", "inLanguage": "he", "provider": {"@id": "https://ilanaungerlaw.com/#office"}, "areaServed": {"@type": "Country", "name": "Israel"}, "serviceType": "Status for common-law partners"}, {"@type": "WebPage", "@id": "https://ilanaungerlaw.com/yeduim-batzibur/#webpage", "url": "https://ilanaungerlaw.com/yeduim-batzibur/", "name": "מעמד לידועים בציבור — עו״ד אילנה אונגר", "description": "הסדרת מעמד לבן/בת זוג זר/ה של ישראלי/ת ללא נישואין (ידועים בציבור), כולל זוגות בני אותו מין: הוכחת חיים משותפים, מסמכים, ראיון וליווי בהליך.", "inLanguage": "he", "isPartOf": {"@id": "https://ilanaungerlaw.com/#website"}, "author": {"@id": "https://ilanaungerlaw.com/#ilana"}, "dateModified": "2026-11-25", "breadcrumb": {"@id": "https://ilanaungerlaw.com/yeduim-batzibur/#bc"}}, {"@type": "BreadcrumbList", "@id": "https://ilanaungerlaw.com/yeduim-batzibur/#bc", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ראשי", "item": "https://ilanaungerlaw.com/"}, {"@type": "ListItem", "position": 2, "name": "מעמד לידועים בציבור", "item": "https://ilanaungerlaw.com/yeduim-batzibur/"}]}, {"@type": "FAQPage", "@id": "https://ilanaungerlaw.com/yeduim-batzibur/#faq", "mainEntity": [{"@type": "Question", "name": "האם זוגות בני אותו מין יכולים להגיש?", "acceptedAnswer": {"@type": "Answer", "text": "כן. הנוהל חל גם על בני זוג מאותו מין, נשואים או ידועים בציבור."}}, {"@type": "Question", "name": "כמה זמן צריך לגור יחד לפני הבקשה?", "acceptedAnswer": {"@type": "Answer", "text": "אין מספר קסם אחד — הרשות בוחנת את מכלול הראיות ליציבות הקשר. בפגישה נבדוק מה מצב הראיות שלכם."}}, {"@type": "Question", "name": "האם אפשר להגיש כשבן הזוג שוהה בישראל בלי אשרה?", "acceptedAnswer": {"@type": "Answer", "text": "זה מצב רגיש שדורש בדיקה זהירה לפני כל הגשה. פנו אליי לפני שאתם פונים לרשות."}}]}]}</script>
 </head>
@@ -103,7 +119,7 @@ footer .wrap{display:grid;gap:10px}footer nav{display:flex;flex-wrap:wrap;gap:16
 <header class="hdr"><div class="wrap in">
  <a href="/" class="logo"><b>אילנה אונגר</b><small>משרד עורכת דין</small></a>
  <nav class="langs" aria-label="Language"><a href="/yeduim-batzibur/" hreflang="he" lang="he" aria-current="page">HE</a><a href="/ru/grazhdanskij-brak-status/" hreflang="ru" lang="ru">RU</a><a href="/en/common-law-partners-status/" hreflang="en" lang="en">EN</a></nav>
- <a class="btn" href="/#contact">לתיאום ייעוץ</a>
+ <a class="btn" data-cm href="/#contact">לתיאום ייעוץ</a>
 </div></header>
 <main id="main" class="wrap art">
  <nav class="bc" aria-label="breadcrumb"><a href="/">ראשי</a><span aria-hidden="true">/</span><span aria-current="page">מעמד לידועים בציבור</span></nav>
@@ -116,7 +132,7 @@ footer .wrap{display:grid;gap:10px}footer nav{display:flex;flex-wrap:wrap;gap:16
   <p class="note">מידע כללי בלבד, נכון למועד העדכון. נהלי רשות האוכלוסין משתנים — כל מקרה נבחן לגופו.</p>
  </article>
  <aside class="cta"><h2>רוצים לבדוק את המקרה שלכם?</h2><p>ספרו לי בקצרה מה המצב — אחזור אליכם ונעבור על הצעדים הבאים.</p>
-  <div class="row"><a class="btn" href="/#contact">לתיאום ייעוץ</a><a class="btn ghost" href="https://wa.me/972528445721" target="_blank" rel="noopener">כתבו בוואטסאפ</a></div></aside>
+  <div class="row"><a class="btn" data-cm href="/#contact">לתיאום ייעוץ</a><a class="btn ghost" href="https://wa.me/972528445721" target="_blank" rel="noopener">כתבו בוואטסאפ</a></div></aside>
  <nav class="others" aria-label="שירותים נוספים"><h2>שירותים נוספים</h2><ul><li><a href="/hlich-medurag-nesuim/">הליך מדורג לבני זוג נשואים</a></li><li><a href="/hachana-leraayon/">הכנה לראיון במשרד הפנים</a></li><li><a href="/arar-al-siruv/">ערר על סירוב משרד הפנים</a></li><li><a href="/mikrim-murkavim/">מקרים מורכבים של מעמד</a></li><li><a href="/yipui-koach-mitmashech/">ייפוי כוח מתמשך ואפוטרופסות</a></li></ul></nav>
 </main>
 <footer><div class="wrap">
@@ -124,4 +140,19 @@ footer .wrap{display:grid;gap:10px}footer nav{display:flex;flex-wrap:wrap;gap:16
  <nav><a href="/#privacy">מדיניות פרטיות</a><a href="/#cookies">מדיניות עוגיות</a><a href="/#accessibility">הצהרת נגישות</a><a href="/#terms">תנאי שימוש</a></nav>
  <p>© 2026 Ilana Unger Law Office &ensp; <a href="tel:+972-52-844-5721" dir="ltr">052-8445721</a> &ensp; <a href="mailto:ilana.unger.law@gmail.com">ilana.unger.law@gmail.com</a></p>
 </div></footer>
+<div class="sm-ovl" id="smo" role="dialog" aria-modal="true" aria-labelledby="smoT" hidden><div class="sm-box"><button class="sm-x" aria-label="close">×</button>
+<h2 id="smoT">קביעת פגישת ייעוץ</h2><p>השאירו פרטים — אחזור אליכם ביום העבודה הקרוב.</p><form id="smoF" novalidate><input type="text" name="bot-field" class="hp" tabindex="-1" autocomplete="off">
+<label>שם<input name="name" required autocomplete="name"></label><label>טלפון / וואטסאפ<input name="phone" type="tel" inputmode="tel" required autocomplete="tel"></label>
+<label class="cc"><input type="checkbox" name="consent" required><span>אני מסכים/ה ל<a href="/#privacy">מדיניות הפרטיות</a> ולקבלת הודעה בוואטסאפ לגבי הפנייה</span></label><button class="btn" type="submit">שלחו בקשה</button></form><p class="ok" hidden>תודה, הבקשה התקבלה. אחזור אליכם בהקדם.</p></div></div>
+<script>(function(){var o=document.getElementById('smo'),f=document.getElementById('smoF');
+function op(e){e.preventDefault();o.hidden=false;requestAnimationFrame(function(){o.classList.add('open')});try{gtag('event','cta_consult_click')}catch(_){}}
+document.querySelectorAll('[data-cm]').forEach(function(a){a.addEventListener('click',op)});
+function cl(){o.classList.remove('open');setTimeout(function(){o.hidden=true},400)}
+o.addEventListener('click',function(e){if(e.target===o||e.target.closest('.sm-x'))cl()});document.addEventListener('keydown',function(e){if(e.key==='Escape')cl()});
+f.addEventListener('submit',function(e){e.preventDefault();if(f['bot-field'].value)return;var ph=f.phone.value.replace(/\D/g,'');
+var bad=!f.name.value.trim()||ph.length<9||!f.consent.checked;f.classList.toggle('err',bad);if(bad)return;
+var d={'form-name':'lead',name:f.name.value.trim(),phone:f.phone.value.trim(),topic:"מעמד לידועים בציבור",source:'service-page',lang:'he',page:location.pathname,consent_service:'yes',consent_ts:new Date().toISOString(),consent_text_ver:'2026-11-18'};
+d.subject='Заявка с сайта · страница услуги · '+d.name+' '+d.phone+' · HE';
+fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(d).toString()}).catch(function(){});
+try{gtag('event','generate_lead',{source:'service-page'});fbq&&fbq('track','Lead')}catch(_){}f.hidden=true;o.querySelector('.ok').hidden=false})})();</script>
 </body></html>

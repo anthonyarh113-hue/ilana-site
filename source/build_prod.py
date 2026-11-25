@@ -221,6 +221,29 @@ UI = {
         'ctaH': 'Want to look at your case?', 'ctaP': 'Tell me briefly what’s happening — I’ll get back to you with the next steps.',
         'by': 'Written by Adv. Ilana Unger', 'upd': 'Updated', 'priv': 'Privacy Policy', 'terms': 'Terms of Use', 'acc': 'Accessibility', 'cook': 'Cookie Policy',
         'note': 'General information as of the update date. Authority procedures change — every case is assessed individually.'}}
+
+CMT = {
+ 'he': ('קביעת פגישת ייעוץ', 'השאירו פרטים — אחזור אליכם ביום העבודה הקרוב.', 'שם', 'טלפון / וואטסאפ', 'אני מסכים/ה ל<a href="/#privacy">מדיניות הפרטיות</a> ולקבלת הודעה בוואטסאפ לגבי הפנייה', 'שלחו בקשה', 'תודה, הבקשה התקבלה. אחזור אליכם בהקדם.'),
+ 'ru': ('Запись на консультацию', 'Оставьте контакты — я свяжусь с вами в ближайший рабочий день.', 'Имя', 'Телефон / WhatsApp', 'Согласен(на) с <a href="/ru/#privacy">политикой конфиденциальности</a> и на сообщение в WhatsApp по заявке', 'Отправить заявку', 'Спасибо, заявка принята. Скоро свяжусь с вами.'),
+ 'en': ('Book a consultation', 'Leave your details — I’ll get back to you the next business day.', 'Name', 'Phone / WhatsApp', 'I agree to the <a href="/en/#privacy">Privacy Policy</a> and to a WhatsApp message about my request', 'Send request', 'Thank you, request received. I’ll be in touch soon.')}
+def svc_modal(l, topic):
+    t, s, n, p, c, go, ok = CMT[l]
+    return f"""<div class="sm-ovl" id="smo" role="dialog" aria-modal="true" aria-labelledby="smoT" hidden><div class="sm-box"><button class="sm-x" aria-label="close">×</button>
+<h2 id="smoT">{t}</h2><p>{s}</p><form id="smoF" novalidate><input type="text" name="bot-field" class="hp" tabindex="-1" autocomplete="off">
+<label>{n}<input name="name" required autocomplete="name"></label><label>{p}<input name="phone" type="tel" inputmode="tel" required autocomplete="tel"></label>
+<label class="cc"><input type="checkbox" name="consent" required><span>{c}</span></label><button class="btn" type="submit">{go}</button></form><p class="ok" hidden>{ok}</p></div></div>
+<script>(function(){{var o=document.getElementById('smo'),f=document.getElementById('smoF');
+function op(e){{e.preventDefault();o.hidden=false;requestAnimationFrame(function(){{o.classList.add('open')}});try{{gtag('event','cta_consult_click')}}catch(_){{}}}}
+document.querySelectorAll('[data-cm]').forEach(function(a){{a.addEventListener('click',op)}});
+function cl(){{o.classList.remove('open');setTimeout(function(){{o.hidden=true}},400)}}
+o.addEventListener('click',function(e){{if(e.target===o||e.target.closest('.sm-x'))cl()}});document.addEventListener('keydown',function(e){{if(e.key==='Escape')cl()}});
+f.addEventListener('submit',function(e){{e.preventDefault();if(f['bot-field'].value)return;var ph=f.phone.value.replace(/\\D/g,'');
+var bad=!f.name.value.trim()||ph.length<9||!f.consent.checked;f.classList.toggle('err',bad);if(bad)return;
+var d={{'form-name':'lead',name:f.name.value.trim(),phone:f.phone.value.trim(),topic:{json.dumps(topic,ensure_ascii=False)},source:'service-page',lang:'{l}',page:location.pathname,consent_service:'yes',consent_ts:new Date().toISOString(),consent_text_ver:'2026-11-18'}};
+d.subject='Заявка с сайта · страница услуги · '+d.name+' '+d.phone+' · {l.upper()}';
+fetch('/',{{method:'POST',headers:{{'Content-Type':'application/x-www-form-urlencoded'}},body:new URLSearchParams(d).toString()}}).catch(function(){{}});
+try{{gtag('event','generate_lead',{{source:'service-page'}});fbq&&fbq('track','Lead')}}catch(_){{}}f.hidden=true;o.querySelector('.ok').hidden=false}})}})();</script>"""
+
 WA = 'https://wa.me/' + CFG['phone_intl'].replace('+', '').replace('-', '')
 for s in SERVICES:
     paths = {l: svc_url(s, l) for l in LANGS}
@@ -265,7 +288,7 @@ for s in SERVICES:
 <header class="hdr"><div class="wrap in">
  <a href="{PATH[l]}" class="logo"><b>{D["logo"]}</b><small>{D["logoSub"]}</small></a>
  <nav class="langs" aria-label="Language">{langs}</nav>
- <a class="btn" href="{PATH[l]}#contact">{u["cta"]}</a>
+ <a class="btn" data-cm href="{PATH[l]}#contact">{u["cta"]}</a>
 </div></header>
 <main id="main" class="wrap art">
  <nav class="bc" aria-label="breadcrumb"><a href="{PATH[l]}">{u["home"]}</a><span aria-hidden="true">/</span><span aria-current="page">{d["h1"]}</span></nav>
@@ -278,7 +301,7 @@ for s in SERVICES:
   <p class="note">{u["note"]}</p>
  </article>
  <aside class="cta"><h2>{u["ctaH"]}</h2><p>{u["ctaP"]}</p>
-  <div class="row"><a class="btn" href="{PATH[l]}#contact">{u["cta"]}</a><a class="btn ghost" href="{WA}" target="_blank" rel="noopener">{u["wa"]}</a></div></aside>
+  <div class="row"><a class="btn" data-cm href="{PATH[l]}#contact">{u["cta"]}</a><a class="btn ghost" href="{WA}" target="_blank" rel="noopener">{u["wa"]}</a></div></aside>
  <nav class="others" aria-label="{u["more"]}"><h2>{u["more"]}</h2><ul>{others}</ul></nav>
 </main>
 <footer><div class="wrap">
@@ -286,6 +309,7 @@ for s in SERVICES:
  <nav><a href="{PATH[l]}#privacy">{u["priv"]}</a><a href="{PATH[l]}#cookies">{u["cook"]}</a><a href="{PATH[l]}#accessibility">{u["acc"]}</a><a href="{PATH[l]}#terms">{u["terms"]}</a></nav>
  <p>© {datetime.date.today().year} Ilana Unger Law Office &ensp; <a href="tel:{CFG["phone_intl"]}" dir="ltr">{CFG["phone_local"]}</a> &ensp; <a href="mailto:{CFG["email"]}">{CFG["email"]}</a></p>
 </div></footer>
+{svc_modal(l, d['h1'])}
 </body></html>'''
         page = assets(page)
         o = OUT / paths[l].strip('/') / 'index.html'

@@ -162,30 +162,41 @@ $('#faqAsk').onclick=()=>openChat();
 /* ---------------- scroll loop ---------------- */
 let PV=null,SR=null,SA=-1;
 function secP(el){const r=el.getBoundingClientRect();return clamp(-r.top/(el.offsetHeight-innerHeight))}
+const EL={};function el(k,s){return EL[k]||(EL[k]=$(s))}
+const LITE=matchMedia('(max-width:760px),(prefers-reduced-motion:reduce)').matches;
+let lastY=-1,dirty=true;addEventListener('resize',()=>{dirty=true;SR=null});
+function inView(e){const r=e.getBoundingClientRect();return r.bottom>-50&&r.top<innerHeight+50}
 function onFrame(){
-  const hdr=$('#hdr');if(scrollY>60)hdr.classList.add('solid');else if(scrollY<12)hdr.classList.remove('solid');
-  const hr=$('#hero').getBoundingClientRect();heroP=clamp(-hr.top/hr.height);
-  document.documentElement.style.setProperty('--atm',Math.max(.18,1-scrollY/(innerHeight*1.1)).toFixed(3));
-  // hero portrait + about photo parallax
+  if(scrollY===lastY&&!dirty){requestAnimationFrame(onFrame);return}
+  lastY=scrollY;dirty=false;
+  const hdr=el('hdr','#hdr');if(scrollY>60)hdr.classList.add('solid');else if(scrollY<12)hdr.classList.remove('solid');
+  if(scrollY<innerHeight*1.4)document.documentElement.style.setProperty('--atm',Math.max(.18,1-scrollY/(innerHeight*1.1)).toFixed(3));
   // problem: one statement at a time
-  const pp=secP($('#problem')),L=PV||(PV=$$('#pvLines .pv-line')),N=L.length,fin=ease(seg(pp,.86,.97));let act=0;
-  L.forEach((el,i)=>{const a=.03+i*.205,t=seg(pp,a,a+.205),inn=ease(seg(t,0,.4)),out=i<N-1?ease(seg(t,.74,1)):fin;
-    if(inn>.5&&out<.5)act=i;
-    el.style.opacity=(inn*(1-out)).toFixed(3);
-    el.style.transform=`translate3d(0,${((1-inn)*70-out*50).toFixed(1)}px,0)`;
-    el.style.filter=`blur(${((1-inn)*6+out*8).toFixed(2)}px)`;
-    el.style.clipPath=`inset(${(out*10).toFixed(1)}% 0 ${((1-inn)*100).toFixed(1)}% 0)`;
-    const pb=$$('#pvProg b')[i];if(pb)pb.style.transform=`scaleX(${seg(t,0,.8).toFixed(3)})`});
+  const prob=el('prob','#problem');
+  if(inView(prob)){
+  const pp=secP(prob),L=PV||(PV=$$('#pvLines .pv-line')),N=L.length,fin=ease(seg(pp,.86,.97));let act=0;
+  const PB=EL.pb||(EL.pb=$$('#pvProg b'));
+  L.forEach((e,i)=>{const a=.03+i*.205,t=seg(pp,a,a+.205),inn=ease(seg(t,0,.4)),out=i<N-1?ease(seg(t,.74,1)):fin;
+    if(inn>.5&&out<.5)act=i;const o=inn*(1-out);
+    e.style.opacity=o.toFixed(3);e.style.visibility=o<.01?'hidden':'visible';
+    e.style.transform=`translate3d(0,${((1-inn)*70-out*50).toFixed(1)}px,0)`;
+    if(!LITE)e.style.filter=o>.98||o<.01?'none':`blur(${((1-inn)*6+out*8).toFixed(2)}px)`;
+    e.style.clipPath=`inset(${(out*10).toFixed(1)}% 0 ${((1-inn)*100).toFixed(1)}% 0)`;
+    if(PB[i])PB[i].style.transform=`scaleX(${seg(t,0,.8).toFixed(3)})`});
   const pst=fin>.5?4:act;if(pst!==PVA){PVA=pst;$$('#pvc .pvs').forEach((s,i)=>s.classList.toggle('on',i===pst));$('#pvc')&&$('#pvc').classList.toggle('pvfin',pst===4)}
   if(pst===3){const n=performance.now();if(n-PVT>90){PVT=n;PVD++;const d=$('#pvcDays');if(d)d.textContent=PVD.toLocaleString('ru-RU')}}
-  $$('#pvNum span').forEach((s,i)=>s.classList.toggle('on',i===act&&fin<.5));
-  const pf=$('#pvFinal');pf.style.opacity=fin;pf.style.transform=`translate3d(0,${((1-fin)*50).toFixed(1)}px,0)`;pf.style.filter=`blur(${((1-fin)*6).toFixed(2)}px)`;pf.style.pointerEvents=fin>.5?'auto':'none';
+  const pf=el('pf','#pvFinal');pf.style.opacity=fin;pf.style.transform=`translate3d(0,${((1-fin)*50).toFixed(1)}px,0)`;if(!LITE)pf.style.filter=fin>.98||fin<.01?'none':`blur(${((1-fin)*6).toFixed(2)}px)`;pf.style.pointerEvents=fin>.5?'auto':'none';
+  }
   // services: active row nearest viewport centre
+  const svc=el('svc','#services');
+  if(inView(svc)){
   const rows=SR||(SR=$$('#slist .srow'));let best=0,bd=1e9;rows.forEach((r,i)=>{const b=r.getBoundingClientRect(),c=b.top+Math.min(b.height,innerHeight*.4)/2,d=Math.abs(c-innerHeight*.45);if(d<bd){bd=d;best=i}});
-  if(best!==SA){SA=best;rows.forEach((r,i)=>r.classList.toggle('on',i===best));$$('#smWords .smw').forEach((s,i)=>s.classList.toggle('on',i===best));$('#smBar').style.transform=`scaleX(${(best+1)/rows.length})`}
+  if(best!==SA){SA=best;rows.forEach((r,i)=>r.classList.toggle('on',i===best));$$('#smWords .smw').forEach((s,i)=>s.classList.toggle('on',i===best));el('smBar','#smBar').style.transform=`scaleX(${(best+1)/rows.length})`}
+  }
   // process: passport opens, then stamps
-  const q=secP($('#process')),op=ease(seg(q,.02,.16));$('#pp').style.setProperty('--open',op.toFixed(3));
-  const q2=seg(q,.18,.94);setStage(q2<=0?-1:Math.min(4,Math.floor(q2*5)));
+  const proc=el('proc','#process');
+  if(inView(proc)){const q=secP(proc),op=ease(seg(q,.02,.16));el('pp','#pp').style.setProperty('--open',op.toFixed(3));
+  const q2=seg(q,.18,.94);setStage(q2<=0?-1:Math.min(4,Math.floor(q2*5)))}
   requestAnimationFrame(onFrame);
 }
 
@@ -206,10 +217,7 @@ const bub=$('#vbub');function hideBub(){bub.classList.remove('show')}
 $('#vbubX').addEventListener('click',e=>{e.stopPropagation();hideBub();sess.bub=1;saveSess()});
 let popupsStarted=false;
 function startPopups(){if(popupsStarted)return;popupsStarted=true;
-  setTimeout(()=>{if(!sess.lp&&!filmPlaying&&!$('.ovl.open')&&!$('#cb').classList.contains('open'))openLp()},5000);
-  setTimeout(()=>{if(!sess.bub&&!sess.vid&&!filmPlaying&&!$('#lp').classList.contains('show'))bub.classList.add('show')},25000)}
-function openLp(){$('#lp').classList.add('show');sess.lp=1;try{sessionStorage.setItem('iu',JSON.stringify(sess))}catch(e){}track('popup_lead_view')}
-function closeLp(){$('#lp').classList.remove('show')}
+  setTimeout(()=>{if(!sess.bub&&!sess.vid&&!filmPlaying&&!$('.ovl.open'))bub.classList.add('show')},25000)}
 
 /* legal sheet */
 const DOCS=['privacy','cookies','accessibility','terms'];let curDoc='privacy';
@@ -245,7 +253,7 @@ function waLink(n,t){const m=n?S('wa').replace('{n}',n).replace('{t}',t||''):S('
 function setWa(){$$('[data-wa]').forEach(a=>a.href=waLink())}
 async function sendLead(data){data['form-name']='lead';data.lang=LANG;data.page=location.pathname;
   const src={form:'טופס',chat:'צ׳אט'}[data.source]||data.source;
-  data.subject=`Заявка с сайта · ${{chat:'чат',popup:'всплывающее окно'}[data.source]||'форма'} · ${data.name||''} ${data.phone||''} · ${LANG.toUpperCase()}`.replace(/\s+/g,' ').trim();
+  data.subject=`Заявка с сайта · ${{chat:'чат',popup:'всплывающее окно',modal:'кнопка консультации'}[data.source]||'форма'} · ${data.name||''} ${data.phone||''} · ${LANG.toUpperCase()}`.replace(/\s+/g,' ').trim();
   try{const u=new URLSearchParams(location.search);['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(k=>u.get(k)&&(data[k]=u.get(k)))}catch(e){}
   try{await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(data).toString()})}catch(e){}
   track('generate_lead',{source:data.source,lead_lang:LANG,topic:data.topic||''})}
@@ -305,15 +313,23 @@ $('#cbF').addEventListener('submit',e=>{e.preventDefault();const v=cbI.value.tri
 })();
 
 
-/* lead popup */
-(function(){const f=$('#lpF');if(!f)return;$('#lpX').onclick=closeLp;
- f.addEventListener('submit',e=>{e.preventDefault();const ph=f.phone.value.trim();let bad=false;
-  if(!validPhone(ph)){f.phone.classList.add('err');bad=true}else f.phone.classList.remove('err');
-  $('.lp-c',f).classList.toggle('err',!f.consent.checked);if(!f.consent.checked)bad=true;if(bad)return;
-  sendLead({name:'',phone:ph,topic:'popup',source:'popup',consent_service:'yes',consent_ts:new Date().toISOString(),consent_text_ver:'2026-11-18'});
-  $('#lp').classList.add('done');$('#lpT').textContent=S('lpOk');setTimeout(closeLp,2600)});
- f.phone.addEventListener('input',()=>f.phone.classList.remove('err'))})();
 /* section word lights up only once you have arrived */
 (function(){const secs=[...document.querySelectorAll('section')].filter(s=>s.querySelector('.sword,.kword'));let t=0;
  function upd(){t=0;const hh=90;secs.forEach(s=>{const r=s.getBoundingClientRect();s.classList.toggle('lit',r.top<=hh+40&&r.bottom>innerHeight*.55)})}
  addEventListener('scroll',()=>{if(!t)t=requestAnimationFrame(upd)},{passive:true});addEventListener('resize',upd);upd()})();
+
+/* consultation modal: every consultation button + auto after 5 s */
+function closeMenu(){const m=$('#mnav');if(m&&m.classList.contains('open')){m.classList.remove('open');$('#burger')&&$('#burger').classList.remove('x-on');document.body.classList.remove('menu-open')}}
+function openCm(mode){const o=$('#cmOvl');if(!o||o.classList.contains('open'))return;o.classList.remove('sent');
+ $('#cmT').textContent=S(mode==='auto'?'cmTauto':'cmTcta');o.dataset.mode=mode;closeMenu&&closeMenu();openOvl(o);track(mode==='auto'?'popup_lead_view':'cta_consult_click');
+ setTimeout(()=>{const i=$('#cmF [name=name]');i&&innerWidth>760&&i.focus({preventScroll:true})},400)}
+document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('[data-cm]');if(!a)return;e.preventDefault();e.stopImmediatePropagation();openCm('cta')},true);
+(function(){const f=$('#cmF');if(!f)return;
+ f.addEventListener('submit',e=>{e.preventDefault();if(f['bot-field'].value)return;const name=f.name.value.trim(),phone=f.phone.value.trim();let bad=false;
+  [['name',!name],['phone',!validPhone(phone)]].forEach(([k,b])=>{f[k].closest('.fld').classList.toggle('err',b);if(b)bad=true});
+  $('.consent',f).classList.toggle('err',!f.consent.checked);if(!f.consent.checked)bad=true;if(bad)return;
+  const t=f.topic.selectedIndex>0?f.topic.options[f.topic.selectedIndex].text:'';
+  sendLead({name,phone,topic:t,source:$('#cmOvl').dataset.mode==='auto'?'popup':'modal',consent_service:'yes',consent_ts:new Date().toISOString(),consent_text_ver:'2026-11-18'});
+  $('#cmOvl').classList.add('sent');sess.lead=1;try{sessionStorage.setItem('iu',JSON.stringify(sess))}catch(e){}f.reset()});
+ $$('#cmF input').forEach(i=>i.addEventListener('input',()=>{i.closest('.fld')?.classList.remove('err');i.closest('.consent')?.classList.remove('err')}));
+ setTimeout(()=>{if(sess.lead||sess.cmAuto||$('.ovl.open')||$('#cb').classList.contains('open')||filmPlaying)return;sess.cmAuto=1;try{sessionStorage.setItem('iu',JSON.stringify(sess))}catch(e){}openCm('auto')},5000)})();
