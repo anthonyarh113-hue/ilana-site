@@ -52,6 +52,5 @@ Allow: /
 
 User-agent: *
 Allow: /
-Disallow: /assets/fonts/
 
 Sitemap: https://ilanaungerlaw.com/sitemap.xml

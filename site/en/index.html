@@ -1533,6 +1533,80 @@ html[dir=rtl] .hdr::before{background:linear-gradient(260deg,#1b1f17 0%,rgba(43,
 html[data-theme=day] .hdr::before{background:linear-gradient(100deg,rgba(248,246,238,.97) 0%,rgba(222,226,206,.95) 40%,rgba(205,203,195,.94) 65%,rgba(214,182,132,.95) 100%)}
 html[dir=rtl][data-theme=day] .hdr::before{background:linear-gradient(260deg,rgba(248,246,238,.97) 0%,rgba(222,226,206,.95) 40%,rgba(205,203,195,.94) 65%,rgba(214,182,132,.95) 100%)}
 
+/* ===================== v16 ===================== */
+/* hero: no background word, title in fewer lines */
+.hero-c{max-width:min(1180px,94vw)}
+.hero .h1{max-width:none}
+html[lang=ru] .hero .h1{font-size:clamp(40px,5.6vw,92px)}
+html[lang=ru] .hero .h1 .ln{white-space:nowrap}
+@media (max-width:640px){html[lang=ru] .hero .h1 .ln{white-space:normal}}
+
+/* section words: bigger, quiet grey; once you've arrived — they simply glow */
+:root{--swfs:clamp(76px,13vw,232px)}
+.sword,.kword,.lit .sword,.lit .kword,html[data-theme=day] .sword,html[data-theme=day] .kword,html[data-theme=day] .lit .sword,html[data-theme=day] .lit .kword,html:not([data-theme=day]) .lit .sword,html:not([data-theme=day]) .lit .kword{
+  animation:none!important;background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;-webkit-text-stroke:0!important;opacity:1;
+  color:rgba(205,203,195,.14);text-shadow:none;filter:none;transition:color 1.1s var(--ease),text-shadow 1.1s var(--ease)}
+html[data-theme=day] .sword,html[data-theme=day] .kword{color:rgba(43,43,17,.1)}
+.lit .sword,.lit .kword,html:not([data-theme=day]) .lit .sword,html:not([data-theme=day]) .lit .kword{color:rgba(236,214,170,.62)!important;text-shadow:0 0 28px rgba(var(--acc-rgb),.45),0 0 80px rgba(var(--acc-rgb),.28)!important}
+html[data-theme=day] .lit .sword,html[data-theme=day] .lit .kword{color:rgba(122,82,48,.42)!important;text-shadow:0 0 26px rgba(255,236,190,.9),0 0 70px rgba(187,149,100,.45)!important}
+
+/* nav + language switch: visible, glow on hover */
+.langs{background:rgba(var(--acc-rgb),.08);border:1px solid rgba(var(--acc-rgb),.35)}
+.langs button{color:var(--ink);opacity:.72;font-weight:600;transition:opacity .3s,color .3s,text-shadow .3s,background .3s}
+.langs button:hover{opacity:1;color:var(--acc);text-shadow:0 0 14px rgba(var(--acc-rgb),.8)}
+.langs button.on,.langs button[aria-pressed=true]{opacity:1;color:var(--ink);background:rgba(var(--acc-rgb),.28)}
+html[data-theme=day] .langs button{color:#2a2716}
+.nav a{position:relative;padding:8px 12px;border-radius:10px;color:var(--ink);opacity:.82;transition:opacity .3s,color .3s,text-shadow .35s,background .35s}
+.nav a:hover{opacity:1;color:var(--acc);background:rgba(var(--acc-rgb),.1);text-shadow:0 0 16px rgba(var(--acc-rgb),.7)}
+html[data-theme=day] .nav a{color:#2a2716}
+html[data-theme=day] .nav a:hover{color:#6d4a26;text-shadow:0 0 16px rgba(187,149,100,.8)}
+
+/* about: clean editorial portrait — fades only at the bottom, offset gold outline behind */
+.a-media{position:relative;width:min(440px,100%);margin-inline:auto}
+.a-media::after{content:none}
+.a-media::before{content:"";position:absolute;z-index:0;top:22px;inset-inline-start:22px;width:100%;aspect-ratio:4/5;border:1px solid rgba(var(--acc-rgb),.55);border-radius:28px;pointer-events:none;display:block}
+.a-photo{position:relative;z-index:1;aspect-ratio:4/5;border-radius:28px;overflow:hidden;background:#140f0a;box-shadow:0 40px 80px -40px rgba(0,0,0,.75);
+  -webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 100%);mask-image:linear-gradient(180deg,#000 72%,transparent 100%)}
+.a-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0}
+.a-badge,html[dir=rtl] .a-badge{position:relative;z-index:2;margin:-74px auto 0;text-align:center}
+.a-badge::before{display:block;margin:0 auto 10px}
+html[data-theme=day] .a-photo{box-shadow:0 40px 80px -42px rgba(60,55,30,.5)}
+
+/* chat launcher: calm metal disc, outline bubble, soft pulse */
+.cb-launch .cbi svg{width:28px;height:28px;fill:none;filter:none}
+.cb-launch .cbi svg path{fill:none;stroke:#2a1e0f;stroke-width:1.7;stroke-linejoin:round}
+.cb-launch .cbi svg circle{fill:#2a1e0f}
+html[data-theme=day] .cb-launch .cbi svg path{stroke:#f3e6cb}
+html[data-theme=day] .cb-launch .cbi svg circle{fill:#f3e6cb}
+.cb-launch .dotn{display:none!important}
+
+/* lead popup */
+.lp{position:fixed;z-index:62;bottom:104px;inset-inline-end:24px;width:min(380px,calc(100% - 24px));padding:20px 20px 16px;border-radius:24px;
+  background:linear-gradient(150deg,rgba(28,32,25,.92),rgba(52,46,32,.9));-webkit-backdrop-filter:blur(22px) saturate(1.2);backdrop-filter:blur(22px) saturate(1.2);
+  border:1px solid rgba(var(--acc-rgb),.4);box-shadow:0 40px 80px -30px rgba(0,0,0,.75),0 0 50px -20px rgba(var(--acc-rgb),.5);color:#efe9dd;
+  opacity:0;transform:translateY(24px) scale(.97);pointer-events:none;transition:opacity .6s var(--ease),transform .7s var(--ease)}
+.lp.show{opacity:1;transform:none;pointer-events:auto}
+html[data-theme=day] .lp{background:linear-gradient(150deg,rgba(250,248,240,.95),rgba(232,228,212,.92));color:#23220f;box-shadow:0 40px 80px -34px rgba(60,55,30,.5)}
+.lp-x{position:absolute;top:10px;inset-inline-end:12px;width:30px;height:30px;border-radius:50%;font-size:20px;line-height:1;color:inherit;opacity:.6}
+.lp-x:hover{opacity:1;background:rgba(var(--acc-rgb),.15)}
+.lp-h{display:flex;gap:12px;align-items:center;padding-inline-end:26px}
+.lp-h b{display:block;font-family:var(--serif);font-weight:500;font-size:19px;line-height:1.2}
+.lp-h small{display:block;margin-top:3px;font-size:13px;opacity:.75}
+.lp-row{display:flex;gap:8px;margin-top:14px}
+.lp-row input{flex:1;min-width:0;height:46px;border-radius:12px;padding:0 14px;font-size:15px;background:rgba(255,255,255,.07);border:1px solid rgba(var(--acc-rgb),.35);color:inherit}
+html[data-theme=day] .lp-row input{background:rgba(255,255,255,.6)}
+.lp-row input.err{border-color:#c2553f}
+.lp-row .btn{--h:46px;white-space:nowrap;padding:0 16px;font-size:12px}
+html[lang=he] .lp-row .btn{font-size:14px}
+.lp-c{display:flex;gap:8px;align-items:flex-start;margin-top:10px;font-size:12px;opacity:.85}
+.lp-c.err{color:#d77a63;opacity:1}
+.lp-c a{color:var(--acc)}
+.lp-wa{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:13px;color:var(--acc);text-decoration:none}
+.lp-wa svg{width:16px;height:16px;fill:currentColor}
+.lp-wa:hover{text-shadow:0 0 12px rgba(var(--acc-rgb),.7)}
+.lp.done form,.lp.done .lp-wa{display:none}
+@media (max-width:640px){.lp{bottom:92px;inset-inline-end:12px}}
+
 </style>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});</script>
 </head>
@@ -1586,7 +1660,7 @@ html[dir=rtl][data-theme=day] .hdr::before{background:linear-gradient(260deg,rgb
 
 <main id="top">
   <section class="hero" id="hero">
-    <div class="sword" data-i18n="w_hero" aria-hidden="true">Status</div><div class="sdeco" aria-hidden="true"><i class="dl"></i><i class="dc c1"></i><i class="dc c2"></i></div>
+    <div class="sdeco" aria-hidden="true"><i class="dl"></i><i class="dc c1"></i><i class="dc c2"></i></div>
     <div class="wrap hero-c">
       <span class="eyebrow" data-i18n="heroEye">Israeli status lawyer — graduated procedure</span>
       <h1 class="h1" data-i18n="heroH"><span class="ln"><span>The one you love</span></span><span class="ln"><span><em>isn’t an Israeli citizen?</em></span></span></h1>
@@ -1803,7 +1877,14 @@ html[dir=rtl][data-theme=day] .hdr::before{background:linear-gradient(260deg,rgb
 </div><button class="st" data-legal="accessibility" data-i18n="aStatement">Accessibility Statement</button></div>
 <!-- chatbot -->
 <div class="cb-tip" id="cbTip"><span class="mono" aria-hidden="true">IU</span><span data-i18n="cbTip">Got a question? I’ll help in a minute</span><button id="cbTipX" aria-label="close">×</button></div>
-<button class="cb-launch" id="cbL" aria-label="Chat"><span class="cbr" aria-hidden="true"></span><span class="cbr r2" aria-hidden="true"></span><span class="cbi"><svg viewBox="0 0 32 32" aria-hidden="true"><path class="b1" d="M6.5 8.5h14a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3h-8l-4.6 3.6c-.4.3-.9 0-.9-.5v-3.1H6.5a3 3 0 0 1-3-3v-7a3 3 0 0 1 3-3Z"/><path class="b2" d="M23.5 13h2a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3h-.6v2.4c0 .4-.5.7-.8.4L21 25h-5.5a3 3 0 0 1-2.4-1.2"/></svg></span><i class="dotn">1</i></button>
+<div class="lp" id="lp" role="dialog" aria-modal="false" aria-labelledby="lpT">
+  <button class="lp-x" id="lpX" aria-label="Close">×</button>
+  <div class="lp-h"><span class="mono" aria-hidden="true">IU</span><div><b id="lpT" data-i18n="lpT">Let’s look at your situation</b><small data-i18n="lpS">Leave your number — I’ll call back the next business day</small></div></div>
+  <form id="lpF" novalidate><div class="lp-row"><input name="phone" type="tel" inputmode="tel" autocomplete="tel" data-i18n-ph="lpPh" aria-label="phone" required><button type="submit" class="btn btn-p"><span data-i18n="lpBtn">Call me back</span></button></div>
+  <label class="lp-c"><input type="checkbox" name="consent" required><span data-i18n="lpC">I agree to the <a href="#privacy" data-legal="privacy">Privacy Policy</a></span></label></form>
+  <a class="lp-wa" href="https://wa.me/972528445721" target="_blank" rel="noopener" data-wa data-track="popup_wa"><svg><use href="#i-wa"/></svg><span data-i18n="lpWa">or message on WhatsApp</span></a>
+</div>
+<button class="cb-launch" id="cbL" aria-label="Chat"><span class="cbr" aria-hidden="true"></span><span class="cbr r2" aria-hidden="true"></span><span class="cbi"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M14 4.5c5.8 0 10.5 3.9 10.5 8.8s-4.7 8.8-10.5 8.8c-1.2 0-2.4-.2-3.5-.5L5.2 23.5l1.4-4.4C4.7 17.5 3.5 15.5 3.5 13.3 3.5 8.4 8.2 4.5 14 4.5Z"/><circle cx="9.6" cy="13.4" r="1.25"/><circle cx="14" cy="13.4" r="1.25"/><circle cx="18.4" cy="13.4" r="1.25"/></svg></span></button>
 <div class="cb" id="cb" role="dialog" aria-label="Chat">
   <div class="cb-h"><span class="mono" aria-hidden="true">IU</span><div><b data-i18n="cbN">Ilana’s assistant</b><small data-i18n="cbS">Quick replies</small></div><button class="x" id="cbX" aria-label="close"></button></div>
   <div class="cb-b" id="cbB"></div>
@@ -1814,7 +1895,7 @@ html[dir=rtl][data-theme=day] .hdr::before{background:linear-gradient(260deg,rgb
 <script>
 /* ============================ TEXTS ============================ */
 const I18N={
-he:{heroRole:'עורכת דין להגירה ומעמד',fLegalH:'מידע משפטי',fContH:'יצירת קשר',fRights:'כל הזכויות שמורות',sst:[['בקשה ומסמכים','ראיון זוגי','מעמד ואזרחות'],['הוכחת חיים משותפים','ראיון','תושבות'],['הכנה אישית','סימולציה','ראיון בביטחון'],['ניתוח הסירוב','השגה או ערר','בחינה מחדש'],['בדיקה דיסקרטית','אסטרטגיה','פנייה לרשות'],['שיחת היכרות','עריכת המסמך','הפקדה']],bPriv:'<small>בשליחת המספר אתם מסכימים ל<a href="#privacy" data-legal="privacy">מדיניות הפרטיות</a>. נשתמש בו רק כדי לחזור אליכם.</small>',more:'למידע נוסף',faqAll:'כל התשובות',fCookP:'מדיניות עוגיות',fMkt:'אשמח לקבל עדכונים ומידע מקצועי מהמשרד (לא חובה, אפשר להסיר בכל עת)',fSens:'אנא אל תכתבו כאן מספרי תעודות או פרטים רגישים — נעבור עליהם יחד בפגישה.',cbDisc:'תשובות כלליות בלבד, לא ייעוץ משפטי.',revNote:'ההמלצות פורסמו בהסכמת הלקוחות. כל תיק שונה, ותוצאות קודמות אינן מבטיחות תוצאה דומה.',ftDisc:'המידע באתר הוא כללי ואינו מהווה ייעוץ משפטי.',skip:'דלג לתוכן',logo:'אילנה אונגר',w_hero:'מעמד',w_film:'סרטון',w_prob:'מכירים?',w_about:'עליי',w_svc:'שירותים',w_proc:'הדרך',w_rev:'המלצות',w_faq:'שאלות',sk:['נישואים','ידועים בציבור','ראיון','ערר','מקרים מורכבים','אפוטרופסות'],logoSub:'משרד עורכת דין',nav1:'עליי',nav2:'שירותים',nav3:'איך זה עובד',nav4:'המלצות',nav5:'שאלות',navCta:'לייעוץ ראשוני',
+he:{lpT:'בואו נבדוק את המצב שלכם',lpS:'השאירו מספר — אחזור אליכם ביום העבודה הקרוב',lpPh:'מספר טלפון',lpBtn:'חזרו אליי',lpC:'מסכים/ה ל<a href="#privacy" data-legal="privacy">מדיניות הפרטיות</a>',lpWa:'או כתבו בוואטסאפ',lpOk:'תודה! אחזור אליכם בקרוב.',heroRole:'עורכת דין להגירה ומעמד',fLegalH:'מידע משפטי',fContH:'יצירת קשר',fRights:'כל הזכויות שמורות',sst:[['בקשה ומסמכים','ראיון זוגי','מעמד ואזרחות'],['הוכחת חיים משותפים','ראיון','תושבות'],['הכנה אישית','סימולציה','ראיון בביטחון'],['ניתוח הסירוב','השגה או ערר','בחינה מחדש'],['בדיקה דיסקרטית','אסטרטגיה','פנייה לרשות'],['שיחת היכרות','עריכת המסמך','הפקדה']],bPriv:'<small>בשליחת המספר אתם מסכימים ל<a href="#privacy" data-legal="privacy">מדיניות הפרטיות</a>. נשתמש בו רק כדי לחזור אליכם.</small>',more:'למידע נוסף',faqAll:'כל התשובות',fCookP:'מדיניות עוגיות',fMkt:'אשמח לקבל עדכונים ומידע מקצועי מהמשרד (לא חובה, אפשר להסיר בכל עת)',fSens:'אנא אל תכתבו כאן מספרי תעודות או פרטים רגישים — נעבור עליהם יחד בפגישה.',cbDisc:'תשובות כלליות בלבד, לא ייעוץ משפטי.',revNote:'ההמלצות פורסמו בהסכמת הלקוחות. כל תיק שונה, ותוצאות קודמות אינן מבטיחות תוצאה דומה.',ftDisc:'המידע באתר הוא כללי ואינו מהווה ייעוץ משפטי.',skip:'דלג לתוכן',logo:'אילנה אונגר',w_hero:'מעמד',w_film:'סרטון',w_prob:'מכירים?',w_about:'עליי',w_svc:'שירותים',w_proc:'הדרך',w_rev:'המלצות',w_faq:'שאלות',sk:['נישואים','ידועים בציבור','ראיון','ערר','מקרים מורכבים','אפוטרופסות'],logoSub:'משרד עורכת דין',nav1:'עליי',nav2:'שירותים',nav3:'איך זה עובד',nav4:'המלצות',nav5:'שאלות',navCta:'לייעוץ ראשוני',
 thDay:'מצב יום',thNight:'מצב לילה',
 heroEye:'עורכת דין למעמד בישראל — הליך מדורג',heroH:'<span class="ln"><span>בן או בת הזוג שלך</span></span><span class="ln"><span><em>אינם אזרחי ישראל?</em></span></span>',
 heroSub:'מסמכים, משרד הפנים, ראיונות וסירובים — הדרך למעמד נמשכת שנים. אני מלווה משפחות לאורכה, מהמסמך הראשון ועד התוצאה.',heroCta:'לייעוץ ראשוני ללא עלות',heroVid:'צפו בסרטון',scroll:'גללו',
@@ -1842,7 +1923,7 @@ a11y:'נגישות',aBig:'הגדלת טקסט',aSmall:'הקטנת טקסט',aCon
 legalUpd:'עודכן לאחרונה: 18.11.2026',
 title:'אילנה אונגר — עורכת דין למעמד בישראל | הליך מדורג'},
 
-ru:{heroRole:'Адвокат по иммиграции и статусу',fLegalH:'Правовая информация',fContH:'Контакты',fRights:'Все права защищены',sst:[['Заявление и документы','Собеседование пары','Статус и гражданство'],['Доказательства совместной жизни','Собеседование','Постоянное жительство'],['Личная подготовка','Репетиция','Собеседование без страха'],['Разбор отказа','Возражение или апелляция','Пересмотр решения'],['Конфиденциальная проверка','Стратегия','Обращение в МВД'],['Беседа','Составление документа','Депонирование']],bPriv:'<small>Отправляя номер, вы соглашаетесь с <a href="#privacy" data-legal="privacy">политикой конфиденциальности</a>. Мы используем его только чтобы связаться с вами.</small>',more:'Подробнее',faqAll:'Все ответы',fCookP:'Политика cookies',fMkt:'Хочу получать полезные материалы и новости офиса (необязательно, можно отписаться в любой момент)',fSens:'Пожалуйста, не указывайте здесь номера документов и чувствительные подробности — обсудим их на консультации.',cbDisc:'Только общие ответы, не юридическая консультация.',revNote:'Отзывы опубликованы с согласия клиентов. Каждое дело индивидуально, прошлые результаты не гарантируют такого же результата.',ftDisc:'Информация на сайте носит общий характер и не является юридической консультацией.',skip:'Перейти к содержанию',logo:'Ilana Unger',w_hero:'Статус',w_film:'Видео',w_prob:'Знакомо',w_about:'Обо мне',w_svc:'Услуги',w_proc:'Путь',w_rev:'Отзывы',w_faq:'Вопросы',sk:['Брак','Пара','Интервью','Обжалование','Сложные случаи','Опека'],logoSub:'Law Office',nav1:'Обо мне',nav2:'Услуги',nav3:'Как это работает',nav4:'Отзывы',nav5:'Вопросы',navCta:'Консультация',
+ru:{lpT:'Разберём вашу ситуацию',lpS:'Оставьте номер — перезвоню в ближайший рабочий день',lpPh:'Номер телефона',lpBtn:'Перезвоните мне',lpC:'Согласен(на) с <a href="#privacy" data-legal="privacy">политикой конфиденциальности</a>',lpWa:'или напишите в WhatsApp',lpOk:'Спасибо! Скоро свяжусь с вами.',heroRole:'Адвокат по иммиграции и статусу',fLegalH:'Правовая информация',fContH:'Контакты',fRights:'Все права защищены',sst:[['Заявление и документы','Собеседование пары','Статус и гражданство'],['Доказательства совместной жизни','Собеседование','Постоянное жительство'],['Личная подготовка','Репетиция','Собеседование без страха'],['Разбор отказа','Возражение или апелляция','Пересмотр решения'],['Конфиденциальная проверка','Стратегия','Обращение в МВД'],['Беседа','Составление документа','Депонирование']],bPriv:'<small>Отправляя номер, вы соглашаетесь с <a href="#privacy" data-legal="privacy">политикой конфиденциальности</a>. Мы используем его только чтобы связаться с вами.</small>',more:'Подробнее',faqAll:'Все ответы',fCookP:'Политика cookies',fMkt:'Хочу получать полезные материалы и новости офиса (необязательно, можно отписаться в любой момент)',fSens:'Пожалуйста, не указывайте здесь номера документов и чувствительные подробности — обсудим их на консультации.',cbDisc:'Только общие ответы, не юридическая консультация.',revNote:'Отзывы опубликованы с согласия клиентов. Каждое дело индивидуально, прошлые результаты не гарантируют такого же результата.',ftDisc:'Информация на сайте носит общий характер и не является юридической консультацией.',skip:'Перейти к содержанию',logo:'Ilana Unger',w_hero:'Статус',w_film:'Видео',w_prob:'Знакомо',w_about:'Обо мне',w_svc:'Услуги',w_proc:'Путь',w_rev:'Отзывы',w_faq:'Вопросы',sk:['Брак','Пара','Интервью','Обжалование','Сложные случаи','Опека'],logoSub:'Law Office',nav1:'Обо мне',nav2:'Услуги',nav3:'Как это работает',nav4:'Отзывы',nav5:'Вопросы',navCta:'Консультация',
 thDay:'Дневной режим',thNight:'Ночной режим',
 heroEye:'Адвокат по статусу в Израиле — ступенчатая процедура',heroH:'<span class="ln"><span>Ваш любимый человек&nbsp;—</span></span><span class="ln"><span><em>не гражданин Израиля?</em></span></span>',
 heroSub:'Документы, МВД, собеседования, отказы — путь к статусу растягивается на годы. Я провожу семьи по нему от первого документа до результата.',heroCta:'Бесплатная консультация',heroVid:'Видео от Иланы',scroll:'Листайте',
@@ -1870,7 +1951,7 @@ a11y:'Доступность',aBig:'Крупнее текст',aSmall:'Мель�
 legalUpd:'Последнее обновление: 18.11.2026',
 title:'Илана Унгер — адвокат по статусу в Израиле | Ступенчатая процедура'},
 
-en:{heroRole:'Immigration & status lawyer',fLegalH:'Legal',fContH:'Contact',fRights:'All rights reserved',sst:[['Application & documents','Couple interview','Status & citizenship'],['Proof of shared life','Interview','Residency'],['Personal prep','Mock interview','A confident interview'],['Refusal review','Objection or appeal','Reconsideration'],['Confidential review','Strategy','Filing'],['First talk','Drafting','Deposit']],bPriv:'<small>By sending your number you agree to the <a href="#privacy" data-legal="privacy">Privacy Policy</a>. We’ll use it only to get back to you.</small>',more:'Learn more',faqAll:'All answers',fCookP:'Cookie Policy',fMkt:'I’d like to receive useful updates from the office (optional, unsubscribe any time)',fSens:'Please don’t include ID numbers or sensitive details here — we’ll go through them at the consultation.',cbDisc:'General answers only, not legal advice.',revNote:'Reviews are published with the clients’ consent. Every case is different; past results do not guarantee a similar outcome.',ftDisc:'Information on this site is general and is not legal advice.',skip:'Skip to content',logo:'Ilana Unger',w_hero:'Status',w_film:'Film',w_prob:'Familiar',w_about:'About',w_svc:'Services',w_proc:'The path',w_rev:'Reviews',w_faq:'Questions',sk:['Marriage','Partners','Interview','Appeal','Complex cases','Guardianship'],logoSub:'Law Office',nav1:'About',nav2:'Services',nav3:'How it works',nav4:'Reviews',nav5:'FAQ',navCta:'Consultation',
+en:{lpT:'Let’s look at your situation',lpS:'Leave your number — I’ll call back the next business day',lpPh:'Phone number',lpBtn:'Call me back',lpC:'I agree to the <a href="#privacy" data-legal="privacy">Privacy Policy</a>',lpWa:'or message on WhatsApp',lpOk:'Thank you! I’ll be in touch soon.',heroRole:'Immigration & status lawyer',fLegalH:'Legal',fContH:'Contact',fRights:'All rights reserved',sst:[['Application & documents','Couple interview','Status & citizenship'],['Proof of shared life','Interview','Residency'],['Personal prep','Mock interview','A confident interview'],['Refusal review','Objection or appeal','Reconsideration'],['Confidential review','Strategy','Filing'],['First talk','Drafting','Deposit']],bPriv:'<small>By sending your number you agree to the <a href="#privacy" data-legal="privacy">Privacy Policy</a>. We’ll use it only to get back to you.</small>',more:'Learn more',faqAll:'All answers',fCookP:'Cookie Policy',fMkt:'I’d like to receive useful updates from the office (optional, unsubscribe any time)',fSens:'Please don’t include ID numbers or sensitive details here — we’ll go through them at the consultation.',cbDisc:'General answers only, not legal advice.',revNote:'Reviews are published with the clients’ consent. Every case is different; past results do not guarantee a similar outcome.',ftDisc:'Information on this site is general and is not legal advice.',skip:'Skip to content',logo:'Ilana Unger',w_hero:'Status',w_film:'Film',w_prob:'Familiar',w_about:'About',w_svc:'Services',w_proc:'The path',w_rev:'Reviews',w_faq:'Questions',sk:['Marriage','Partners','Interview','Appeal','Complex cases','Guardianship'],logoSub:'Law Office',nav1:'About',nav2:'Services',nav3:'How it works',nav4:'Reviews',nav5:'FAQ',navCta:'Consultation',
 thDay:'Day mode',thNight:'Night mode',
 heroEye:'Israeli status lawyer — graduated procedure',heroH:'<span class="ln"><span>The one you love</span></span><span class="ln"><span><em>isn’t an Israeli citizen?</em></span></span>',
 heroSub:'Paperwork, the Ministry of Interior, interviews, refusals — the road to status takes years. I guide families along it, from the first document to the result.',heroCta:'Free consultation',heroVid:'Watch the video',scroll:'Scroll',
@@ -2198,7 +2279,7 @@ document.addEventListener('click',e=>{const a=e.target.closest('[data-track]');i
 function setLang(l,first){
   LANG=l;const h=document.documentElement;h.lang=l;h.dir=l==='he'?'rtl':'ltr';if(!PROD)document.title=S('title');
   $$('[data-i18n]').forEach(el=>{const v=S(el.dataset.i18n);if(typeof v==='string')el.innerHTML=v});
-  $$('[data-i18n-sk]').forEach(el=>{el.textContent=S('sk')[+el.dataset.i18nSk]});
+  $$('[data-i18n-ph]').forEach(e=>e.placeholder=S(e.dataset.i18nPh));$$('[data-i18n-sk]').forEach(el=>{el.textContent=S('sk')[+el.dataset.i18nSk]});
   $$('.langs button').forEach(b=>b.classList.toggle('on',b.dataset.lang===l));
   $('#cbI').placeholder=S('cbPh');$('#leadForm [name=lang]').value=l;
   $('#theme').setAttribute('aria-label',S(isDay()?'thNight':'thDay'));
@@ -2375,9 +2456,11 @@ function afterVideo(){if(sess.cbAuto)return;sess.cbAuto=1;saveSess();setTimeout(
 const bub=$('#vbub');function hideBub(){bub.classList.remove('show')}
 $('#vbubX').addEventListener('click',e=>{e.stopPropagation();hideBub();sess.bub=1;saveSess()});
 let popupsStarted=false;
-function startPopups(){if(popupsStarted||sess.vid)return;popupsStarted=true;
-  setTimeout(()=>{if(!sess.bub&&!sess.vid&&!filmPlaying)bub.classList.add('show')},3000);
-  setTimeout(()=>{if(!sess.vid&&!filmPlaying&&!$('.ovl.open')&&!$('#cb').classList.contains('open'))openVideo()},7000)}
+function startPopups(){if(popupsStarted)return;popupsStarted=true;
+  setTimeout(()=>{if(!sess.lp&&!filmPlaying&&!$('.ovl.open')&&!$('#cb').classList.contains('open'))openLp()},5000);
+  setTimeout(()=>{if(!sess.bub&&!sess.vid&&!filmPlaying&&!$('#lp').classList.contains('show'))bub.classList.add('show')},25000)}
+function openLp(){$('#lp').classList.add('show');sess.lp=1;try{sessionStorage.setItem('iu',JSON.stringify(sess))}catch(e){}track('popup_lead_view')}
+function closeLp(){$('#lp').classList.remove('show')}
 
 /* legal sheet */
 const DOCS=['privacy','cookies','accessibility','terms'];let curDoc='privacy';
@@ -2413,7 +2496,7 @@ function waLink(n,t){const m=n?S('wa').replace('{n}',n).replace('{t}',t||''):S('
 function setWa(){$$('[data-wa]').forEach(a=>a.href=waLink())}
 async function sendLead(data){data['form-name']='lead';data.lang=LANG;data.page=location.pathname;
   const src={form:'טופס',chat:'צ׳אט'}[data.source]||data.source;
-  data.subject=`Заявка с сайта · ${data.source==='chat'?'чат':'форма'} · ${data.name||''} ${data.phone||''} · ${LANG.toUpperCase()}`.replace(/\s+/g,' ').trim();
+  data.subject=`Заявка с сайта · ${{chat:'чат',popup:'всплывающее окно'}[data.source]||'форма'} · ${data.name||''} ${data.phone||''} · ${LANG.toUpperCase()}`.replace(/\s+/g,' ').trim();
   try{const u=new URLSearchParams(location.search);['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(k=>u.get(k)&&(data[k]=u.get(k)))}catch(e){}
   try{await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(data).toString()})}catch(e){}
   track('generate_lead',{source:data.source,lead_lang:LANG,topic:data.topic||''})}
@@ -2472,10 +2555,19 @@ $('#cbF').addEventListener('submit',e=>{e.preventDefault();const v=cbI.value.tri
   if(Math.abs(tx-cx)>.002||Math.abs(ty-cy)>.002)requestAnimationFrame(loop);else run=false}
 })();
 
-/* section words light up when their section comes into view */
-(function(){const secs=[...document.querySelectorAll('section')].filter(s=>s.querySelector('.sword,.kword'));
- const o=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('lit',e.isIntersecting)),{threshold:0,rootMargin:'-30% 0px -45% 0px'});
- secs.forEach(s=>o.observe(s))})();
+
+/* lead popup */
+(function(){const f=$('#lpF');if(!f)return;$('#lpX').onclick=closeLp;
+ f.addEventListener('submit',e=>{e.preventDefault();const ph=f.phone.value.trim();let bad=false;
+  if(!validPhone(ph)){f.phone.classList.add('err');bad=true}else f.phone.classList.remove('err');
+  $('.lp-c',f).classList.toggle('err',!f.consent.checked);if(!f.consent.checked)bad=true;if(bad)return;
+  sendLead({name:'',phone:ph,topic:'popup',source:'popup',consent_service:'yes',consent_ts:new Date().toISOString(),consent_text_ver:'2026-11-18'});
+  $('#lp').classList.add('done');$('#lpT').textContent=S('lpOk');setTimeout(closeLp,2600)});
+ f.phone.addEventListener('input',()=>f.phone.classList.remove('err'))})();
+/* section word lights up only once you have arrived */
+(function(){const secs=[...document.querySelectorAll('section')].filter(s=>s.querySelector('.sword,.kword'));let t=0;
+ function upd(){t=0;const hh=90;secs.forEach(s=>{const r=s.getBoundingClientRect();s.classList.toggle('lit',r.top<=hh+40&&r.bottom>innerHeight*.55)})}
+ addEventListener('scroll',()=>{if(!t)t=requestAnimationFrame(upd)},{passive:true});addEventListener('resize',upd);upd()})();
 
 </script>
 </body>

@@ -312,7 +312,7 @@ for s in SERVICES:
 bots = ['Googlebot', 'Bingbot', 'GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-SearchBot', 'Claude-User',
         'PerplexityBot', 'Perplexity-User', 'Google-Extended', 'Applebot', 'Applebot-Extended', 'YandexBot', 'DuckDuckBot', 'CCBot', 'meta-externalagent']
 (OUT / 'robots.txt').write_text('# Public legal-information site. Search engines and AI assistants are welcome.\n' +
-    ''.join(f'User-agent: {b}\nAllow: /\n\n' for b in bots) + 'User-agent: *\nAllow: /\nDisallow: /assets/fonts/\n\n' +
+    ''.join(f'User-agent: {b}\nAllow: /\n\n' for b in bots) + 'User-agent: *\nAllow: /\n\n' +
     f'Sitemap: {URL}/sitemap.xml\n')
 
 L = []
