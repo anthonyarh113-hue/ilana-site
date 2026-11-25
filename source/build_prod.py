@@ -122,7 +122,8 @@ def social(l, title, desc, url, image):
         f'<meta name="twitter:title" content="{esc(title)}">', f'<meta name="twitter:description" content="{esc(desc)}">',
         f'<meta name="twitter:image" content="{URL}{image}">'])
 
-ICONS = ('<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n<link rel="icon" href="/favicon-32.png" sizes="32x32">\n'
+VERIFY = ''.join(f'<meta name="{n}" content="{CFG[k]}">' for k, n in (('google_site_verification','google-site-verification'),('bing_site_verification','msvalidate.01'),('yandex_verification','yandex-verification')) if CFG.get(k))
+ICONS = VERIFY + ('<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n<link rel="icon" href="/favicon-32.png" sizes="32x32">\n'
          '<link rel="apple-touch-icon" href="/apple-touch-icon.png">\n<link rel="manifest" href="/site.webmanifest">')
 
 KNOWS = {'en': ['Israeli immigration law', 'Graduated procedure for foreign spouses', 'Common-law partner status (yeduim batzibur)',
@@ -167,7 +168,8 @@ for v in ('ilana_he', 'ilana_ru'):
     dur[v] = float(subprocess.check_output(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', str(ROOT / f'vid/{v}.mp4')]).decode().strip())
 
 for l in LANGS:
-    h = tpl.replace('{{I18N}}', i18n).replace('{{APP}}', 'window.SVC_URL=' + json.dumps(SVC_URL) + ';\n' + app)
+    ana = {'ga4': CFG.get('ga4', ''), 'pixel': CFG.get('pixel', ''), 'ads': CFG.get('google_ads', '')}
+    h = tpl.replace('{{I18N}}', i18n).replace('{{APP}}', 'window.SVC_URL=' + json.dumps(SVC_URL) + ';window.ANALYTICS=' + json.dumps(ana) + ';\n' + app)
     h = assets(h)
     h = re.sub(r'<html lang="he" dir="rtl" data-theme="night">',
                f'<html lang="{l}" dir="{"rtl" if l == "he" else "ltr"}" data-theme="night" data-base="{URL}">', h)
@@ -354,6 +356,7 @@ for l in ('en', 'ru', 'he'):
 for f in ('favicon.svg', 'favicon-32.png', 'apple-touch-icon.png', 'icon-512.png', 'og-he.jpg', 'og-ru.jpg', 'og-en.jpg'):
     if (ROOT / 'brand' / f).exists():
         shutil.copy(ROOT / 'brand' / f, OUT / f)
+(OUT / f"{CFG['indexnow_key']}.txt").write_text(CFG['indexnow_key'])
 (OUT / '.well-known').mkdir(exist_ok=True)
 (OUT / '.well-known/security.txt').write_text(f'Contact: mailto:{CFG["email"]}\nPreferred-Languages: he, ru, en\nExpires: {(datetime.date.today()+datetime.timedelta(days=365)).isoformat()}T00:00:00Z\n')
 if CFG.get('google_site_verification'):

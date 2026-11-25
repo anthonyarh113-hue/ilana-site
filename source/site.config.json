@@ -3,11 +3,24 @@
   "phone_intl": "+972-52-844-5721",
   "phone_local": "052-8445721",
   "email": "ilana.unger.law@gmail.com",
-  "same_as": ["https://www.instagram.com/ilana.unger.law/"],
-  "address": {"streetAddress": "", "addressLocality": "", "postalCode": ""},
+  "same_as": [
+    "https://www.instagram.com/ilana.unger.law/"
+  ],
+  "address": {
+    "streetAddress": "",
+    "addressLocality": "",
+    "postalCode": ""
+  },
   "geo": null,
   "opening_hours": null,
   "video_upload_date": "2026-11-01",
   "first_consult_en": "first consultation without charge (per the office's current terms)",
-  "textures": "own"
+  "textures": "own",
+  "ga4": "",
+  "pixel": "",
+  "google_ads": "",
+  "google_site_verification": "",
+  "bing_site_verification": "",
+  "yandex_verification": "",
+  "indexnow_key": "dbd71db2aa9c1d315a877222384cc25e"
 }
